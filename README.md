@@ -47,4 +47,4 @@ assets/
 - Fonts are self-hosted in `assets/fonts/` (Inter and Manrope, variable WOFF2, SIL Open Font License 1.1): latin and cyrillic subsets, plus a one-glyph file for the hryvnia sign. Characters outside these subsets fall back to the system font; `index.html` preloads the two cyrillic files.
 - The demo colours are custom properties on `.demo` / `.demo.is-on` (`assets/css/components/demo.css`); the layout switches from a column to a row at 720px.
 - `<html>` starts with `no-js`; the first inline script swaps it to `js`. Scroll reveals are hidden only under `.js`, so the page is complete without JavaScript.
-- FAQ answer about battery life ("буде вказаний на основі тестування") and the "до 8 годин*" spec are pending real test data.
+- Battery life: the spec table says "до 8 годин*" (confirmed by the owner), but the asterisk has no footnote and the FAQ answer still says the figure "буде вказаний на основі тестування". Align the two when the copy is next touched.
