@@ -1,0 +1,25 @@
+/* Entry stylesheet: imports in order core → shared blocks → layout → page sections. */
+
+@import url("core/var.css");
+@import url("core/fonts.css");
+@import url("core/base.css");
+@import url("components/blink.css");
+@import url("components/reveal.css");
+@import url("components/eyebrow.css");
+@import url("components/title.css");
+@import url("components/stock.css");
+@import url("components/check.css");
+@import url("components/sweep.css");
+@import url("layout/page.css");
+@import url("layout/header.css");
+@import url("layout/footer.css");
+@import url("layout/sticky-bar.css");
+@import url("components/hero.css");
+@import url("components/problem.css");
+@import url("components/demo.css");
+@import url("components/usecase.css");
+@import url("components/feature.css");
+@import url("components/specs.css");
+@import url("components/faq.css");
+@import url("components/buy.css");
+@import url("components/order.css");

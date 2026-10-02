@@ -1,0 +1,17 @@
+/* "In stock" status line with a green dot. */
+
+.stock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-soft);
+}
+
+.stock__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-ok);
+  box-shadow: 0 0 8px var(--color-ok);
+}

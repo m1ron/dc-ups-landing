@@ -1,0 +1,13 @@
+/* Small uppercase label above section titles. */
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.eyebrow--soft {
+  color: var(--color-accent-soft);
+}

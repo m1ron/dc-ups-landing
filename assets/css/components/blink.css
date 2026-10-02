@@ -1,0 +1,10 @@
+/* Status dot that blinks briefly every few seconds. Set --blink-duration on the dot (or its parent) to keep dots out of sync. */
+
+.blink {
+  animation: blink var(--blink-duration, 3.2s) linear infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 96%, 100% { opacity: 1; }
+  93% { opacity: .35; }
+}

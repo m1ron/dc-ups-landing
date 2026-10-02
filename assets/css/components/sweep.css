@@ -1,0 +1,45 @@
+/* Thin light line that runs along the top edge of a card. */
+
+.sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sweep__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg,rgba(143,176,247,0),rgba(143,176,247,0.9),rgba(143,176,247,0));
+}
+
+.sweep__line {
+  animation: sweep 7s ease-in-out infinite;
+}
+
+.sweep--delayed .sweep__line {
+  animation-delay: 2.5s;
+}
+
+/* Runs once each time the parent becomes visible (the order dialog). */
+.sweep--once .sweep__line {
+  animation: sweep-once 1.8s .2s ease-in-out;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-100%); opacity: 0; }
+  10%, 35% { opacity: 1; }
+  45%, 100% { transform: translateX(340%); opacity: 0; }
+}
+
+@keyframes sweep-once {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(340%); opacity: 0; }
+}

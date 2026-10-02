@@ -1,0 +1,481 @@
+/* "How it works" demo: socket → UPS → router flow with a power switch. demo.js toggles .is-on. */
+
+.demo {
+  padding: 72px 20px 96px;
+}
+
+.demo__card {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--demo-card-border);
+  padding: clamp(22px,4vw,56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .5s ease-in-out;
+}
+
+.demo__glow {
+  position: absolute;
+  left: 50%;
+  top: -360px;
+  width: 1000px;
+  height: 720px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side,var(--demo-glow),rgba(0,0,0,0));
+  pointer-events: none;
+  transition: background .5s ease-in-out;
+}
+
+.demo__head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.demo__title {
+  font-size: clamp(32px,5.4vw,60px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.demo__controls {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.demo__switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  width: 100%;
+}
+
+.demo__switch-thumb {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  width: calc(50% - 5px);
+  border-radius: 999px;
+  background: var(--demo-thumb-bg);
+  transform: var(--demo-thumb-x);
+  transition: transform .5s var(--ease-in-out),background .5s ease-in-out,box-shadow .5s ease-in-out;
+  box-shadow: var(--demo-thumb-shadow);
+}
+
+.demo__switch-btn {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  height: 52px;
+  border-radius: 999px;
+  background: transparent;
+  transition: color .5s ease-in-out;
+}
+
+.demo__switch-btn--on {
+  color: var(--demo-on-btn-fg);
+}
+
+.demo__switch-btn--off {
+  color: var(--demo-off-btn-fg);
+}
+
+.demo__flow {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: var(--demo-flow-cols);
+  align-items: stretch;
+}
+
+.demo__step {
+  position: relative;
+  border-radius: 20px;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--demo-step-border);
+  box-shadow: var(--demo-step-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .5s ease-in-out,box-shadow .5s ease-in-out;
+  transition-delay: var(--demo-step-delay);
+}
+
+.demo__step--grid {
+  background: var(--color-surface-sunken);
+}
+
+.demo__media {
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo__bulb {
+  position: relative;
+  height: 100px;
+  aspect-ratio: 600/680;
+}
+
+.demo__bulb-glow {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 150%;
+  aspect-ratio: 1/1;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side,rgba(240,200,140,0.11),rgba(232,184,110,0));
+  opacity: var(--demo-bulb-on);
+  transition: opacity .5s ease-in-out;
+  pointer-events: none;
+}
+
+.demo__bulb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.demo__bulb-img--on {
+  filter: brightness(1.02) saturate(0.7);
+  opacity: var(--demo-bulb-on);
+  transition: opacity .5s ease-in-out;
+}
+
+.demo__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+.demo__num {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--demo-step-color);
+  transition: color .5s ease-in-out;
+  transition-delay: var(--demo-step-delay);
+}
+
+.demo__name {
+  font-size: clamp(15px,1.7vw,19px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  display: grid;
+  align-items: start;
+}
+
+.demo__when-on {
+  grid-area: 1/1;
+  opacity: var(--demo-on-op);
+  transition: opacity .5s ease-in-out;
+  transition-delay: var(--demo-step-delay);
+}
+
+.demo__when-off {
+  grid-area: 1/1;
+  opacity: var(--demo-off-op);
+  transition: opacity .5s ease-in-out;
+  transition-delay: var(--demo-step-delay);
+}
+
+.demo__desc {
+  display: grid;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-muted);
+  text-wrap: pretty;
+  min-height: 2.9em;
+  white-space: pre-line;
+}
+
+.demo__link {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  width: var(--demo-conn-w);
+  height: 1px;
+  margin: var(--demo-conn-m);
+  transform: var(--demo-conn-rot);
+}
+
+.demo__link-line {
+  position: absolute;
+  inset: 0;
+  background: var(--demo-line);
+  transition: background .5s ease-in-out;
+}
+
+.demo__link-live {
+  position: absolute;
+  inset: -3px 0;
+  opacity: var(--demo-grid-spark);
+  transition: opacity .35s var(--ease-out);
+}
+
+.demo__wave-clip {
+  position: absolute;
+  inset: -2px 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.demo__wave {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(90deg,rgba(255,255,255,0),var(--demo-spark),rgba(255,255,255,0));
+  opacity: 0.35;
+  filter: blur(1.5px);
+}
+
+.demo__spark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.demo__spark-tail {
+  position: absolute;
+  right: 100%;
+  top: -0.5px;
+  width: 10px;
+  height: 1px;
+  background: linear-gradient(90deg,rgba(255,255,255,0),var(--demo-spark));
+}
+
+.demo__spark-dot {
+  position: absolute;
+  left: -1.25px;
+  top: -1.25px;
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 0 3px 1px var(--demo-spark),0 0 6px 2px var(--demo-spark);
+}
+
+.demo__step--ups {
+  background: var(--color-surface-raised);
+}
+
+.demo__halo {
+  position: absolute;
+  inset: -1px;
+  border-radius: 21px;
+  pointer-events: none;
+  opacity: var(--demo-breathe-op);
+  transition: opacity .5s ease-in-out;
+  transition-delay: var(--demo-step-delay);
+}
+
+.demo__halo-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(91,147,255,0.25);
+}
+
+.demo__device {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.6));
+}
+
+.demo__device--ups {
+  max-width: min(100%,190px);
+}
+
+.demo__step--router {
+  background: var(--color-surface-sunken);
+}
+
+.demo__device--router {
+  max-width: 100%;
+}
+
+/* State. Default = power cut (UPS feeds the router); .is-on = mains power is on.
+   Phones stack the three steps; from 720px they sit in a row. */
+.demo {
+  --demo-flow-cols: minmax(0, 1fr);
+  --demo-conn-w: 40px;
+  --demo-conn-m: 22px 0;
+  --demo-conn-rot: rotate(90deg);
+
+  --demo-card-border: rgba(59, 123, 255, 0.45);
+  --demo-glow: rgba(59, 123, 255, 0.34);
+  --demo-thumb-bg: var(--color-accent);
+  --demo-thumb-x: translateX(100%);
+  --demo-thumb-shadow: 0 0 28px rgba(59, 123, 255, 0.6);
+  --demo-on-btn-fg: var(--color-muted);
+  --demo-off-btn-fg: var(--color-white);
+  --demo-bulb-on: 0;
+  --demo-breathe-op: 1;
+  --demo-on-op: 0;
+  --demo-off-op: 1;
+  --demo-grid-spark: 0;
+}
+
+@media (min-width: 720px) {
+  .demo {
+    --demo-flow-cols: minmax(0, 1fr) clamp(22px, 5vw, 64px) minmax(0, 1.1fr) clamp(22px, 5vw, 64px) minmax(0, 1fr);
+    --demo-conn-w: 100%;
+    --demo-conn-m: 0;
+    --demo-conn-rot: none;
+  }
+}
+
+.demo.is-on {
+  --demo-card-border: rgba(232, 184, 110, 0.12);
+  --demo-glow: rgba(232, 184, 110, 0.04);
+  --demo-thumb-bg: var(--color-text);
+  --demo-thumb-x: translateX(0);
+  --demo-thumb-shadow: 0 0 28px rgba(255, 255, 255, 0.35);
+  --demo-on-btn-fg: var(--color-black);
+  --demo-off-btn-fg: var(--color-muted);
+  --demo-bulb-on: 1;
+  --demo-breathe-op: 0;
+  --demo-on-op: 1;
+  --demo-off-op: 0;
+  --demo-grid-spark: 1;
+}
+
+/* Steps: blue while running on the battery (lit one after another), warm on mains. */
+.demo__step {
+  --demo-step-border: rgba(59, 123, 255, 0.65);
+  --demo-step-shadow: 0 0 48px -6px rgba(59, 123, 255, 0.5);
+  --demo-step-color: var(--color-accent-soft);
+  --demo-step-delay: 0ms;
+}
+
+.demo__step--grid {
+  --demo-step-border: rgba(255, 255, 255, 0.08);
+  --demo-step-shadow: none;
+  --demo-step-color: var(--color-dim);
+}
+
+.demo__step--ups {
+  --demo-step-delay: 150ms;
+}
+
+.demo__step--router {
+  --demo-step-delay: 300ms;
+}
+
+.demo.is-on .demo__step {
+  --demo-step-border: rgba(232, 184, 110, 0.18);
+  --demo-step-shadow: 0 0 40px -12px rgba(232, 184, 110, 0.10);
+  --demo-step-color: var(--color-warm);
+  --demo-step-delay: 0ms;
+}
+
+/* Connectors: the one from the socket is a dashed dead line during a power cut. */
+.demo__link--in {
+  --demo-line: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 4px, transparent 4px 8px);
+  --demo-spark: rgba(232, 184, 110, 0.9);
+}
+
+.demo__link--out {
+  --demo-line: rgba(59, 123, 255, 0.7);
+  --demo-spark: rgba(59, 123, 255, 0.95);
+  --demo-spark-lag: .4s;
+}
+
+.demo.is-on .demo__link {
+  --demo-line: rgba(232, 184, 110, 0.45);
+  --demo-spark: rgba(232, 184, 110, 0.9);
+}
+
+/* Motion */
+.demo__wave {
+  animation: demo-wave 3.2s ease-in-out infinite;
+}
+
+.demo__link--out .demo__wave {
+  animation-delay: .6s;
+}
+
+/* The spark box is as wide as the connector, so translateX(100%) carries it end to end. */
+.demo__spark {
+  animation: demo-spark 2.4s linear infinite backwards;
+  animation-delay: var(--demo-spark-lag, 0s);
+}
+
+.demo__spark--2 {
+  animation-delay: calc(var(--demo-spark-lag, 0s) + .8s);
+}
+
+.demo__spark--3 {
+  animation-delay: calc(var(--demo-spark-lag, 0s) + 1.6s);
+}
+
+.demo__halo-ring {
+  animation: demo-breathe 6s ease-in-out infinite;
+}
+
+/* Glow is a fixed shadow on its own element: only opacity animates, never box-shadow. */
+.demo__halo-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 34px -6px rgba(59, 123, 255, 0.24);
+  opacity: 0;
+  animation: demo-breathe-glow 6s ease-in-out infinite;
+}
+
+@keyframes demo-wave {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(230%); }
+}
+
+@keyframes demo-spark {
+  0% { transform: translateX(0); opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes demo-breathe {
+  0%, 100% { opacity: .35; }
+  50% { opacity: .6; }
+}
+
+@keyframes demo-breathe-glow {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}

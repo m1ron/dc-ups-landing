@@ -1,0 +1,11 @@
+/* Section heading (h2). Size and tracking come from the section that mixes it in. */
+
+.title {
+  font-family: var(--font-display);
+  margin: 0;
+  font-weight: 700;
+}
+
+.title__muted {
+  color: #4A4D54;
+}
