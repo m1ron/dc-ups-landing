@@ -56,6 +56,6 @@ src/
 - The order form does not send anything yet: submitting only shows the confirmation (`src/js/components/order.js`).
 - Telegram / Viber links and the `/ru/`, `/en/` language links are placeholders.
 - Fonts are self-hosted in `src/fonts/` (Inter and Manrope, variable WOFF2, SIL Open Font License 1.1): latin and cyrillic subsets, plus a one-glyph file for the hryvnia sign. Characters outside these subsets fall back to the system font; `index.html` preloads the two cyrillic files.
-- `public/og-image.webp` is a copy of the product shot so the Open Graph link survives the build. It still needs a proper 1200×630 image and an absolute URL once the domain is known.
+- The page is meant to live at `https://potuzhno.pp.ua/dc-ups/`: the canonical, `og:url` and `og:image` in `index.html` point there. `public/og-image.webp` is a copy of the product shot; it still needs a proper 1200×630 image. If the static build is ever deployed on its own, set Vite's `base` to `/dc-ups/` so asset paths and the image URL match.
 - `<html>` starts with `no-js`; the first inline script swaps it to `js`. Scroll reveals are hidden only under `.js`, so the page is complete without JavaScript.
 - Battery life: the spec table says "до 8 годин*" (confirmed by the owner), but the asterisk has no footnote and the FAQ answer still says the figure "буде вказаний на основі тестування". Align the two when the copy is next touched.
