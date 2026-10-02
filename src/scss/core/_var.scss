@@ -23,6 +23,9 @@ $font-display: Manrope, Inter, sans-serif;
 $ease-out: cubic-bezier(.2, .8, .2, 1); // entrances, hovers
 $ease-in-out: cubic-bezier(.65, 0, .35, 1); // sliding thumbs and tracks
 
+$header-height: 66px; // fixed header: 14px from the top of the screen + the 52px bar (layout/_header.scss)
+$anchor-gap: 24px; // air between the header and the content an anchor link scrolls to
+
 // Hover look only where hover exists (it would stick on touch); keyboard focus gets the same look.
 @mixin hover {
   @media (hover: hover) {
@@ -34,6 +37,12 @@ $ease-in-out: cubic-bezier(.65, 0, .35, 1); // sliding thumbs and tracks
   &:focus-visible {
     @content;
   }
+}
+
+// Where an anchor link stops: the section's content lands just below the fixed header.
+// Pass the section's own top padding so sections with and without it line up the same.
+@mixin anchor-offset($padding-top: 0px) {
+  scroll-margin-top: $header-height + $anchor-gap - $padding-top;
 }
 
 // Blurred backdrop. The prefixed line (Safari before 18) must come first:

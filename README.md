@@ -53,6 +53,7 @@ src/
 - BEM everywhere, no inline styles. In SCSS a block is one file with elements written as `&__element`. State classes are `is-*` and are set only by JS.
 - Design tokens are SCSS variables in `core/_var.scss`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
 - Breakpoints live in `core/_breakpoints.scss`: `sm` 420px (header shows the section links) and `md` 720px (demo steps sit in a row). Use `media-breakpoint-up()`.
+- Sections that anchor links scroll to include the `anchor-offset` mixin, so their content stops 24px below the fixed header. A new section with an `id` needs it too (pass the section's own top padding).
 - Use the `hover` mixin for hover looks (hover-capable devices only, same look on keyboard focus) and the `backdrop-filter` mixin for blurred backdrops: the CSS minifier drops the standard property if the prefixed one is written after it.
 - The header menu (`.header__menu`) is the one place styled by tag: its `li` and `a` carry no classes.
 - Lists are real `ul` / `ol` / `dl` with `role="list"` where markers are removed (Safari drops list semantics otherwise). Payment options in the order dialog are native radio inputs inside their labels.

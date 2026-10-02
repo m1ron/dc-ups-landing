@@ -3,6 +3,7 @@
 
 .buy {
   padding: 72px 20px 0;
+  @include anchor-offset(72px);
 
   &__inner {
     position: relative;

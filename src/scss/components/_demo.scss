@@ -6,6 +6,7 @@
 // Phones stack the three steps; from 720px they sit in a row.
 .demo {
   padding: 72px 20px 96px;
+  @include anchor-offset(72px);
   --demo-flow-cols: minmax(0, 1fr);
   --demo-conn-w: 40px;
   --demo-conn-m: 22px 0;

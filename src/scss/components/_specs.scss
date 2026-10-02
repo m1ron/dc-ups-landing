@@ -3,6 +3,7 @@
 
 .specs {
   padding: 0 20px 96px;
+  @include anchor-offset;
 
   &__card {
     position: relative;

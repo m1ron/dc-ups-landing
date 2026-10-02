@@ -3,6 +3,7 @@
 
 .problem {
   padding: 72px 20px 20px;
+  @include anchor-offset(72px);
 
   &__inner {
     max-width: 1200px;

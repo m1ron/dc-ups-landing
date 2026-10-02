@@ -3,6 +3,7 @@
 
 .usecase {
   padding: 0 20px 96px;
+  @include anchor-offset;
 
   &__inner {
     max-width: 1200px;
