@@ -1,0 +1,115 @@
+// Fixed pill header: logo, section links, buy button.
+@use '../core/var' as *;
+@use '../core/breakpoints' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 14px 16px;
+  pointer-events: none;
+
+  &__bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 52px;
+    padding: 0 6px 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(18,18,20,0.72);
+    @include backdrop-filter(blur(20px) saturate(1.4));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    pointer-events: auto;
+  }
+
+  &__logo {
+    flex: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $color-text;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  &__dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $color-accent;
+    box-shadow: 0 0 12px $color-accent;
+  }
+
+  &__nav {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  // Section links need about 420px of width; below that only the logo and the buy button fit.
+  &__links {
+    flex: 1;
+    min-width: 0;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0 20px;
+    height: 40px;
+    overflow: hidden;
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    white-space: nowrap;
+    color: $color-muted;
+    font-size: 14px;
+    transition: color .2s $ease-out;
+
+    @include hover {
+      color: $color-text;
+    }
+  }
+
+  &__buy {
+    display: flex;
+    align-items: center;
+    background: $color-text;
+    color: $color-black;
+    font-weight: 600;
+    font-size: 14px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    flex: none;
+    white-space: nowrap;
+    transition: transform .2s $ease-out;
+
+    @include hover {
+      background: $color-white;
+      color: $color-black;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}

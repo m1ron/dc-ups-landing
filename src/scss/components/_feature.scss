@@ -1,0 +1,176 @@
+// Feature card with a spotlight that follows the pointer; one card holds the voltage picker.
+@use '../core/var' as *;
+
+.feature {
+  flex: 1 1 340px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: radial-gradient(400px circle at var(--feature-spot-x,0%) var(--feature-spot-y,0%),rgba(59,123,255,0.12),transparent 60%),$color-surface;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+
+  &__chip {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    gap: 8px;
+
+    &--signal {
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    &--battery {
+      border: 1px solid rgba(59,123,255,0.35);
+    }
+
+    &--online {
+      font-size: 13px;
+      border: 1px solid rgba(74,222,128,0.35);
+      color: $color-ok;
+    }
+  }
+
+  &__signal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $color-ok;
+    box-shadow: 0 0 8px $color-ok;
+
+    &:nth-child(1) {
+      --blink-duration: 5.3s;
+    }
+
+    &:nth-child(2) {
+      --blink-duration: 6s;
+    }
+
+    &:nth-child(3) {
+      --blink-duration: 6.7s;
+    }
+
+    &:nth-child(4) {
+      --blink-duration: 7.4s;
+    }
+
+    &:nth-child(5) {
+      --blink-duration: 8.1s;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: $color-muted;
+    min-height: 3.1em;
+
+    // Voltage hint: fades out, feature.js swaps the text, then it rises back in.
+    &--volt {
+      transition: opacity .35s $ease-out, transform .35s $ease-out;
+
+      &.is-swapping {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .25s ease-in, transform 0s .25s;
+      }
+    }
+  }
+
+  &__volts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__volt {
+    font-family: $font-ui;
+    font-weight: 500;
+    font-size: 15px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: transparent;
+    color: $color-text-soft;
+    transition: background .5s ease-in-out,border-color .5s ease-in-out,color .5s ease-in-out,transform .2s $ease-out;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.is-active {
+      border: 1px solid $color-accent;
+      background: $color-accent;
+      color: $color-white;
+    }
+  }
+
+  &__cell {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 11px;
+    border-radius: 3px;
+    border: 1.5px solid $color-accent-soft;
+    box-sizing: border-box;
+    margin-right: 3px;
+  }
+
+  &__cell-fill {
+    position: absolute;
+    left: 1.5px;
+    top: 1.5px;
+    bottom: 1.5px;
+    right: 1.5px;
+    border-radius: 1px;
+    background: $color-accent;
+    box-shadow: 0 0 6px rgba(59,123,255,0.6);
+  }
+
+  &__cell-cap {
+    position: absolute;
+    right: -4px;
+    top: 2.5px;
+    width: 2px;
+    height: 3px;
+    border-radius: 0 1px 1px 0;
+    background: $color-accent-soft;
+  }
+
+  &__chip-label {
+    font-size: 13px;
+    color: $color-accent-soft;
+    margin-left: 4px;
+  }
+
+  &__chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $color-ok;
+    box-shadow: 0 0 8px $color-ok;
+    --blink-duration: 8.8s;
+  }
+}

@@ -1,0 +1,17 @@
+// Scroll reveal: hidden only when JS is running (.js), shown by reveal.js adding .is-revealed.
+@use '../core/var' as *;
+
+.reveal {
+  .js & {
+    opacity: 0;
+  }
+
+  .js &.is-revealed {
+    opacity: 1;
+    animation: reveal .9s $ease-out backwards;
+  }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(28px); }
+}

@@ -1,0 +1,67 @@
+// Buy bar fixed to the bottom of the screen; sticky-bar.js toggles .is-visible.
+@use '../core/var' as *;
+
+.sticky-bar {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 30;
+  max-width: 520px;
+  margin: 0 auto;
+  background: rgba(18,18,20,0.82);
+  @include backdrop-filter(blur(20px) saturate(1.4));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  padding: 8px 8px 8px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transform: translateY(160%);
+  transition: transform .35s $ease-out;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  &__name {
+    font-size: 12px;
+    color: $color-muted;
+  }
+
+  &__price {
+    font-family: $font-display;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  &__buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-accent;
+    color: $color-white;
+    font-weight: 600;
+    font-size: 16px;
+    height: 48px;
+    padding: 0 28px;
+    border-radius: 999px;
+    transition: transform .2s $ease-out;
+
+    @include hover {
+      background: $color-accent-hover;
+      color: $color-white;
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  &.is-visible {
+    transform: translateY(0);
+  }
+}

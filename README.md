@@ -2,49 +2,60 @@
 
 One-page landing (Ukrainian) for a router UPS: hero, problem → solution, interactive "how it works" demo, use cases, tech details, FAQ and an order dialog.
 
-Plain HTML, CSS and JavaScript. No build step, no dependencies.
+HTML, SCSS and vanilla JavaScript, built with Vite. The markup will later move into a WordPress + WooCommerce theme; until then `index.html` is the page.
 
 ## Run
 
-Any static server from the project root, for example:
-
 ```bash
-python3 -m http.server 8765
+npm install
 ```
 
-Then open `http://localhost:8765`. Opening `index.html` straight from disk does not work: the scripts are ES modules.
+```bash
+npm run dev
+```
+
+Vite serves the site at `http://localhost:5173` and compiles SCSS on the fly.
+
+Other commands:
+
+- `npm run build` — production build into `dist/` (one CSS file, one JS file, hashed names).
+- `npm run preview` — serves `dist/` at `http://localhost:4173` to check the build.
+- `npm run lint` — ESLint over `src/js`.
 
 ## Deploy
 
-Not set up yet. The site is static: upload `index.html` and `assets/` as they are.
+Not set up yet. The build is static: upload the contents of `dist/`.
 
 ## Structure
 
 ```
-index.html
-assets/
-  css/
-    style.css        entry: @import in order core → shared blocks → layout → sections
-    core/            var.css (tokens), fonts.css (@font-face), base.css (element defaults, focus ring, reduced motion)
-    layout/          page, header, footer, sticky-bar
-    components/      one file per block (hero, demo, faq, order, …)
+index.html           the page; Vite entry
+public/              files that keep their names (og-image.webp)
+src/
+  scss/
+    style.scss       entry: @use in order core → shared blocks → layout → sections
+    core/            _var (tokens, mixins), _breakpoints, _fonts, _base
+    layout/          _page, _header, _footer, _sticky-bar
+    components/      one partial per block (_hero, _demo, _faq, _order, …)
   js/
     main.js          entry: imports and init order
     core/            env.js (media queries), keys.js (arrow-key navigation)
     layout/          sticky-bar.js
-    components/      one module per block, same name as its CSS file
+    components/      one module per block, same name as its SCSS partial
   fonts/
   img/
 ```
 
 ## Worth knowing before you change things
 
-- BEM everywhere, no inline styles. State classes are `is-*` and are set only by JS.
+- BEM everywhere, no inline styles. In SCSS a block is one file with elements written as `&__element`. State classes are `is-*` and are set only by JS.
+- Design tokens are SCSS variables in `core/_var.scss`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
+- Breakpoints live in `core/_breakpoints.scss`: `sm` 420px (header shows the section links) and `md` 720px (demo steps sit in a row). Use `media-breakpoint-up()`.
+- Use the `hover` mixin for hover looks (hover-capable devices only, same look on keyboard focus) and the `backdrop-filter` mixin for blurred backdrops: the CSS minifier drops the standard property if the prefixed one is written after it.
 - `_src/` holds source photos and the design PDF. It is ignored by git and exists only locally.
-- The order form does not send anything yet: submitting only shows the confirmation (`assets/js/components/order.js`).
+- The order form does not send anything yet: submitting only shows the confirmation (`src/js/components/order.js`).
 - Telegram / Viber links and the `/ru/`, `/en/` language links are placeholders.
-- `style.css` uses native `@import`, so the browser loads 24 small CSS files. Fine for development; concatenate them (or add a bundler) before caring about load time.
-- Fonts are self-hosted in `assets/fonts/` (Inter and Manrope, variable WOFF2, SIL Open Font License 1.1): latin and cyrillic subsets, plus a one-glyph file for the hryvnia sign. Characters outside these subsets fall back to the system font; `index.html` preloads the two cyrillic files.
-- The demo colours are custom properties on `.demo` / `.demo.is-on` (`assets/css/components/demo.css`); the layout switches from a column to a row at 720px.
+- Fonts are self-hosted in `src/fonts/` (Inter and Manrope, variable WOFF2, SIL Open Font License 1.1): latin and cyrillic subsets, plus a one-glyph file for the hryvnia sign. Characters outside these subsets fall back to the system font; `index.html` preloads the two cyrillic files.
+- `public/og-image.webp` is a copy of the product shot so the Open Graph link survives the build. It still needs a proper 1200×630 image and an absolute URL once the domain is known.
 - `<html>` starts with `no-js`; the first inline script swaps it to `js`. Scroll reveals are hidden only under `.js`, so the page is complete without JavaScript.
 - Battery life: the spec table says "до 8 годин*" (confirmed by the owner), but the asterisk has no footnote and the FAQ answer still says the figure "буде вказаний на основі тестування". Align the two when the copy is next touched.

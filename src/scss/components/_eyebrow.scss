@@ -1,0 +1,14 @@
+// Small uppercase label above section titles.
+@use '../core/var' as *;
+
+.eyebrow {
+  font-family: $font-ui;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: $color-accent;
+
+  &--soft {
+    color: $color-accent-soft;
+  }
+}

@@ -1,0 +1,13 @@
+// Breakpoints. Mobile first: base styles are for phones, wider layouts are added with media-breakpoint-up().
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 420px, // the header has room for the section links
+  md: 720px, // the demo steps sit in a row
+);
+
+@mixin media-breakpoint-up($name) {
+  @media (min-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}

@@ -1,0 +1,18 @@
+// "In stock" status line with a green dot.
+@use '../core/var' as *;
+
+.stock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: $color-text-soft;
+
+  &__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $color-ok;
+    box-shadow: 0 0 8px $color-ok;
+  }
+}

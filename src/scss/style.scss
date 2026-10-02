@@ -1,0 +1,24 @@
+// Entry stylesheet for the landing: core → shared blocks → layout → page sections.
+
+@use 'core/fonts';
+@use 'core/base';
+@use 'components/blink';
+@use 'components/reveal';
+@use 'components/eyebrow';
+@use 'components/title';
+@use 'components/stock';
+@use 'components/check';
+@use 'components/sweep';
+@use 'layout/page';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/sticky-bar';
+@use 'components/hero';
+@use 'components/problem';
+@use 'components/demo';
+@use 'components/usecase';
+@use 'components/feature';
+@use 'components/specs';
+@use 'components/faq';
+@use 'components/buy';
+@use 'components/order';

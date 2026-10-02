@@ -1,0 +1,12 @@
+// Section heading (h2). Size and tracking come from the section that mixes it in.
+@use '../core/var' as *;
+
+.title {
+  font-family: $font-display;
+  margin: 0;
+  font-weight: 700;
+
+  &__muted {
+    color: #4A4D54;
+  }
+}

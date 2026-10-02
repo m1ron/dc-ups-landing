@@ -1,0 +1,73 @@
+// Page footer: copyright, language links, contacts.
+@use '../core/var' as *;
+
+.footer {
+  padding: 0 20px 132px;
+
+  &__inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 96px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: $color-dim;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+  }
+
+  &__langs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  &__lang-current {
+    color: $color-muted;
+  }
+
+  &__sep {
+    color: #3A3D44;
+  }
+
+  &__lang {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    color: $color-dim;
+    transition: color .2s $ease-out;
+
+    @include hover {
+      color: $color-text-soft;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__contact {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    color: $color-text-soft;
+    transition: color .2s $ease-out;
+
+    @include hover {
+      color: $color-white;
+    }
+  }
+}
