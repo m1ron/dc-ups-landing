@@ -1,0 +1,43 @@
+// Browser normalisation, trimmed from modern-normalize v3 (MIT, github.com/sindresorhus/modern-normalize)
+// to the rules this page needs. Left out on purpose: the `line-height: 1.15` and font stack on `html`
+// (the design uses the fonts' own line height and sets its fonts in _base), `tab-size`, and the rules for
+// elements the page does not have (tables, code, sub/sup, legend, progress, search and file inputs, summary).
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  // Keep text the same size when iOS rotates to landscape.
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+// Form controls: the page's font instead of the browser's, no stray margins (Safari, Firefox).
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}

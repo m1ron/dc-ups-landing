@@ -2,13 +2,12 @@
 @use '../core/var' as *;
 
 .buy {
-  padding: 72px 20px 0;
-  @include anchor-offset(72px);
+  padding: $section-top $gutter 0;
+  @include anchor-offset($section-top);
 
   &__inner {
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
+    @include container;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -32,11 +31,9 @@
   }
 
   &__card {
+    @include card($radius-card-lg, $color-line-strong);
     position: relative;
     overflow: hidden;
-    border-radius: 32px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: $color-surface;
     display: flex;
     flex-wrap: wrap;
   }
@@ -49,14 +46,14 @@
     align-items: center;
     justify-content: center;
     padding: 32px;
-    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba(59,123,255,0.16),rgba(0,0,0,0)),#070708;
+    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba($color-accent, 0.16),rgba($color-black, 0)),#070708;
   }
 
   &__image {
     width: 100%;
     max-width: 480px;
     height: auto;
-    filter: drop-shadow(0 30px 40px rgba(0,0,0,0.7));
+    filter: drop-shadow(0 30px 40px rgba($color-black, 0.7));
   }
 
   &__details {
@@ -107,8 +104,8 @@
     flex-direction: column;
     gap: 10px;
     padding: 18px 0;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid $color-line;
+    border-bottom: 1px solid $color-line;
   }
 
   &__perk {
@@ -126,10 +123,7 @@
   }
 
   &__payment-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    @include label-caps(11px);
     color: $color-accent-soft;
   }
 
@@ -140,9 +134,9 @@
 
     &--card {
       padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(59,123,255,0.45);
-      background: rgba(59,123,255,0.07);
+      border-radius: $radius-field;
+      border: 1px solid rgba($color-accent, 0.45);
+      background: rgba($color-accent, 0.07);
     }
 
     &--plain {
@@ -162,7 +156,7 @@
     }
 
     &--off {
-      border: 1.5px solid rgba(255,255,255,0.28);
+      border: 1.5px solid rgba($color-white, 0.28);
     }
   }
 
@@ -191,24 +185,18 @@
   }
 
   &__cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include button-pill;
     gap: 10px;
     height: 64px;
-    border-radius: 999px;
-    background: $color-accent;
-    color: $color-white;
-    font-weight: 600;
     font-size: 19px;
-    box-shadow: 0 10px 50px rgba(59,123,255,0.4);
-    transition: transform .2s $ease-out,box-shadow .2s $ease-out,background .2s $ease-out;
+    box-shadow: 0 10px 50px rgba($color-accent, 0.4);
+    transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
 
     @include hover {
       background: $color-accent-hover;
       color: $color-white;
       transform: translateY(-2px);
-      box-shadow: 0 18px 60px rgba(59,123,255,0.55);
+      box-shadow: 0 18px 60px rgba($color-accent, 0.55);
     }
 
     &:active {
@@ -220,8 +208,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(min(100%,220px),1fr));
     gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba($color-white, 0.08);
+    border: 1px solid $color-line;
     border-radius: 22px;
     overflow: hidden;
   }
@@ -235,11 +223,7 @@
   }
 
   &__fact-label {
-    font-family: $font-ui;
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    @include label-caps(11px);
     color: $color-accent-soft;
   }
 

@@ -35,7 +35,7 @@ public/              files that keep their names (og-image.webp)
 src/
   scss/
     style.scss       entry: @use in order core → shared blocks → layout → sections
-    core/            _var (tokens, mixins), _breakpoints, _fonts, _base
+    core/            _var (tokens, mixins), _breakpoints, _normalize, _fonts, _base
     layout/          _page, _header, _footer, _sticky-bar
     components/      one partial per block (_hero, _demo, _faq, _order, …)
   js/
@@ -51,8 +51,8 @@ src/
 
 - Styles and scripts never hook onto IDs, only onto classes. IDs in the markup exist for anchor links (`#demo`, `#buy`) and ARIA references (`aria-controls`, `aria-labelledby`).
 - BEM everywhere, no inline styles. In SCSS a block is one file with elements written as `&__element`. State classes are `is-*` and are set only by JS.
-- Design tokens are SCSS variables in `core/_var.scss`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
-- Breakpoints live in `core/_breakpoints.scss`: `sm` 420px (header shows the section links) and `md` 720px (demo steps sit in a row). Use `media-breakpoint-up()`.
+- Design tokens are SCSS variables in `core/_var.scss`: colours (alphas are written as `rgba($color-accent, 0.5)`), hairlines (`$color-line`), radii, the content column, section paddings, durations and easings. Repeated patterns are mixins there too: `container`, `label-caps`, `dot`, `button-pill`, `card`, `hover`, `backdrop-filter`, `anchor-offset`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
+- Breakpoints are the Bootstrap-style `$grid-breakpoints` map in `core/_var.scss` (xs 0, xsl 420, sm 540, md 768, lg 992, xl 1340, xxl 1600, xxxl 1900) with `media-breakpoint-up/down/between/only` in `core/_breakpoints.scss`. Thresholds follow the layout, not device models. In use so far: `xsl` (header shows the section links) and `md` (demo steps sit in a row).
 - Sections that anchor links scroll to include the `anchor-offset` mixin, so their content stops 24px below the fixed header. A new section with an `id` needs it too (pass the section's own top padding).
 - Use the `hover` mixin for hover looks (hover-capable devices only, same look on keyboard focus) and the `backdrop-filter` mixin for blurred backdrops: the CSS minifier drops the standard property if the prefixed one is written after it.
 - The header menu (`.header__menu`) is the one place styled by tag: its `li` and `a` carry no classes.

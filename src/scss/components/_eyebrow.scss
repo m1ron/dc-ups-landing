@@ -2,11 +2,7 @@
 @use '../core/var' as *;
 
 .eyebrow {
-  font-family: $font-ui;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  @include label-caps(12px, 0.12em);
   color: $color-accent;
 
   &--soft {

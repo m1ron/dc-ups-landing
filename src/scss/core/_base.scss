@@ -1,9 +1,5 @@
-// Global element defaults, focus ring, reduced motion.
+// Global element defaults (on top of _normalize), focus ring, reduced motion.
 @use 'var' as *;
-
-* {
-  box-sizing: border-box;
-}
 
 html {
   scroll-behavior: smooth;
@@ -11,7 +7,6 @@ html {
 }
 
 body {
-  margin: 0;
   min-width: 320px;
   background: $color-black;
   color: $color-text;

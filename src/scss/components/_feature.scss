@@ -3,9 +3,9 @@
 
 .feature {
   flex: 1 1 340px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: radial-gradient(400px circle at var(--feature-spot-x,0%) var(--feature-spot-y,0%),rgba(59,123,255,0.12),transparent 60%),$color-surface;
+  border-radius: $radius-card;
+  border: 1px solid $color-line;
+  background: radial-gradient(400px circle at var(--feature-spot-x,0%) var(--feature-spot-y,0%),rgba($color-accent, 0.12),transparent 60%),$color-surface;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -18,30 +18,26 @@
     align-items: center;
     height: 44px;
     padding: 0 16px;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     gap: 8px;
 
     &--signal {
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba($color-white, 0.14);
     }
 
     &--battery {
-      border: 1px solid rgba(59,123,255,0.35);
+      border: 1px solid rgba($color-accent, 0.35);
     }
 
     &--online {
       font-size: 13px;
-      border: 1px solid rgba(74,222,128,0.35);
+      border: 1px solid rgba($color-ok, 0.35);
       color: $color-ok;
     }
   }
 
   &__signal-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: $color-ok;
-    box-shadow: 0 0 8px $color-ok;
+    @include dot(8px, $color-ok);
 
     &:nth-child(1) {
       --blink-duration: 5.3s;
@@ -87,7 +83,7 @@
 
     // Voltage hint: fades out, feature.js swaps the text, then it rises back in.
     &--volt {
-      transition: opacity .35s $ease-out, transform .35s $ease-out;
+      transition: opacity $duration-state $ease-out, transform $duration-state $ease-out;
 
       &.is-swapping {
         opacity: 0;
@@ -109,12 +105,12 @@
     font-size: 15px;
     height: 44px;
     padding: 0 16px;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid rgba($color-white, 0.14);
     background: transparent;
     color: $color-text-soft;
-    transition: background .5s ease-in-out,border-color .5s ease-in-out,color .5s ease-in-out,transform .2s $ease-out;
+    transition: background $duration-demo ease-in-out,border-color $duration-demo ease-in-out,color $duration-demo ease-in-out,transform $duration-hover $ease-out;
 
     &:active {
       transform: scale(0.95);
@@ -146,7 +142,7 @@
     right: 1.5px;
     border-radius: 1px;
     background: $color-accent;
-    box-shadow: 0 0 6px rgba(59,123,255,0.6);
+    box-shadow: 0 0 6px rgba($color-accent, 0.6);
   }
 
   &__cell-cap {
@@ -166,11 +162,7 @@
   }
 
   &__chip-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: $color-ok;
-    box-shadow: 0 0 8px $color-ok;
+    @include dot(7px, $color-ok);
     --blink-duration: 8.8s;
   }
 }

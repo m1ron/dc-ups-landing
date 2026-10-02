@@ -2,14 +2,14 @@
 @use '../core/var' as *;
 
 .footer {
-  padding: 0 20px 132px;
+  padding: 0 $gutter 132px;
 
   &__inner {
     position: relative;
-    max-width: 1200px;
+    max-width: $container-width;
     margin: 96px auto 0;
     padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid $color-line;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -46,7 +46,7 @@
     align-items: center;
     min-height: 40px;
     color: $color-dim;
-    transition: color .2s $ease-out;
+    transition: color $duration-hover $ease-out;
 
     @include hover {
       color: $color-text-soft;
@@ -64,7 +64,7 @@
     align-items: center;
     min-height: 40px;
     color: $color-text-soft;
-    transition: color .2s $ease-out;
+    transition: color $duration-hover $ease-out;
 
     @include hover {
       color: $color-white;

@@ -5,17 +5,17 @@
 // State. Default = power cut (UPS feeds the router); .is-on = mains power is on.
 // Phones stack the three steps; from 720px they sit in a row.
 .demo {
-  padding: 72px 20px 96px;
-  @include anchor-offset(72px);
+  padding: $section-top $gutter $section-gap;
+  @include anchor-offset($section-top);
   --demo-flow-cols: minmax(0, 1fr);
   --demo-conn-w: 40px;
   --demo-conn-m: 22px 0;
   --demo-conn-rot: rotate(90deg);
-  --demo-card-border: rgba(59, 123, 255, 0.45);
-  --demo-glow: rgba(59, 123, 255, 0.34);
+  --demo-card-border: #{rgba($color-accent, 0.45)};
+  --demo-glow: #{rgba($color-accent, 0.34)};
   --demo-thumb-bg: #{$color-accent};
   --demo-thumb-x: translateX(100%);
-  --demo-thumb-shadow: 0 0 28px rgba(59, 123, 255, 0.6);
+  --demo-thumb-shadow: 0 0 28px #{rgba($color-accent, 0.6)};
   --demo-on-btn-fg: #{$color-muted};
   --demo-off-btn-fg: #{$color-white};
   --demo-bulb-on: 0;
@@ -32,9 +32,8 @@
   }
 
   &__card {
-    max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 32px;
+    @include container;
+    border-radius: $radius-card-lg;
     background: $color-surface;
     border: 1px solid var(--demo-card-border);
     padding: clamp(22px,4vw,56px);
@@ -44,7 +43,7 @@
     gap: 36px;
     position: relative;
     overflow: hidden;
-    transition: border-color .5s ease-in-out;
+    transition: border-color $duration-demo ease-in-out;
   }
 
   &__glow {
@@ -54,9 +53,9 @@
     width: 1000px;
     height: 720px;
     transform: translateX(-50%);
-    background: radial-gradient(closest-side,var(--demo-glow),rgba(0,0,0,0));
+    background: radial-gradient(closest-side,var(--demo-glow),rgba($color-black, 0));
     pointer-events: none;
-    transition: background .5s ease-in-out;
+    transition: background $duration-demo ease-in-out;
   }
 
   &__head {
@@ -89,9 +88,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 5px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 999px;
+    background: rgba($color-white, 0.06);
+    border: 1px solid $color-line-strong;
+    border-radius: $radius-pill;
     width: 100%;
   }
 
@@ -101,10 +100,10 @@
     bottom: 5px;
     left: 5px;
     width: calc(50% - 5px);
-    border-radius: 999px;
+    border-radius: $radius-pill;
     background: var(--demo-thumb-bg);
     transform: var(--demo-thumb-x);
-    transition: transform .5s $ease-in-out,background .5s ease-in-out,box-shadow .5s ease-in-out;
+    transition: transform $duration-demo $ease-in-out,background $duration-demo ease-in-out,box-shadow $duration-demo ease-in-out;
     box-shadow: var(--demo-thumb-shadow);
   }
 
@@ -116,9 +115,9 @@
     font-size: 16px;
     font-weight: 600;
     height: 52px;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     background: transparent;
-    transition: color .5s ease-in-out;
+    transition: color $duration-demo ease-in-out;
 
     &--on {
       color: var(--demo-on-btn-fg);
@@ -147,16 +146,16 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: border-color .5s ease-in-out,box-shadow .5s ease-in-out;
+    transition: border-color $duration-demo ease-in-out,box-shadow $duration-demo ease-in-out;
     transition-delay: var(--demo-step-delay);
-    --demo-step-border: rgba(59, 123, 255, 0.65);
-    --demo-step-shadow: 0 0 48px -6px rgba(59, 123, 255, 0.5);
+    --demo-step-border: #{rgba($color-accent, 0.65)};
+    --demo-step-shadow: 0 0 48px -6px #{rgba($color-accent, 0.5)};
     --demo-step-color: #{$color-accent-soft};
     --demo-step-delay: 0ms;
 
     &--grid {
       background: $color-surface-sunken;
-      --demo-step-border: rgba(255, 255, 255, 0.08);
+      --demo-step-border: #{rgba($color-white, 0.08)};
       --demo-step-shadow: none;
       --demo-step-color: #{$color-dim};
     }
@@ -193,9 +192,9 @@
     aspect-ratio: 1/1;
     transform: translate(-50%,-50%);
     border-radius: 50%;
-    background: radial-gradient(closest-side,rgba(240,200,140,0.11),rgba(232,184,110,0));
+    background: radial-gradient(closest-side,rgba(240,200,140,0.11),rgba($color-warm, 0));
     opacity: var(--demo-bulb-on);
-    transition: opacity .5s ease-in-out;
+    transition: opacity $duration-demo ease-in-out;
     pointer-events: none;
   }
 
@@ -209,7 +208,7 @@
     &--on {
       filter: brightness(1.02) saturate(0.7);
       opacity: var(--demo-bulb-on);
-      transition: opacity .5s ease-in-out;
+      transition: opacity $duration-demo ease-in-out;
     }
   }
 
@@ -225,7 +224,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     color: var(--demo-step-color);
-    transition: color .5s ease-in-out;
+    transition: color $duration-demo ease-in-out;
     transition-delay: var(--demo-step-delay);
   }
 
@@ -242,14 +241,14 @@
   &__when-on {
     grid-area: 1/1;
     opacity: var(--demo-on-op);
-    transition: opacity .5s ease-in-out;
+    transition: opacity $duration-demo ease-in-out;
     transition-delay: var(--demo-step-delay);
   }
 
   &__when-off {
     grid-area: 1/1;
     opacity: var(--demo-off-op);
-    transition: opacity .5s ease-in-out;
+    transition: opacity $duration-demo ease-in-out;
     transition-delay: var(--demo-step-delay);
   }
 
@@ -274,13 +273,13 @@
 
     // Connectors: the one from the socket is a dashed dead line during a power cut.
     &--in {
-      --demo-line: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 4px, transparent 4px 8px);
-      --demo-spark: rgba(232, 184, 110, 0.9);
+      --demo-line: repeating-linear-gradient(90deg, #{rgba($color-white, 0.18)} 0 4px, transparent 4px 8px);
+      --demo-spark: #{rgba($color-warm, 0.9)};
     }
 
     &--out {
-      --demo-line: rgba(59, 123, 255, 0.7);
-      --demo-spark: rgba(59, 123, 255, 0.95);
+      --demo-line: #{rgba($color-accent, 0.7)};
+      --demo-spark: #{rgba($color-accent, 0.95)};
       --demo-spark-lag: .4s;
     }
   }
@@ -289,14 +288,14 @@
     position: absolute;
     inset: 0;
     background: var(--demo-line);
-    transition: background .5s ease-in-out;
+    transition: background $duration-demo ease-in-out;
   }
 
   &__link-live {
     position: absolute;
     inset: -3px 0;
     opacity: var(--demo-grid-spark);
-    transition: opacity .35s $ease-out;
+    transition: opacity $duration-state $ease-out;
   }
 
   &__wave-clip {
@@ -313,7 +312,7 @@
     bottom: 0;
     left: 0;
     width: 45%;
-    background: linear-gradient(90deg,rgba(255,255,255,0),var(--demo-spark),rgba(255,255,255,0));
+    background: linear-gradient(90deg,rgba($color-white, 0),var(--demo-spark),rgba($color-white, 0));
     opacity: 0.35;
     filter: blur(1.5px);
     animation: demo-wave 3.2s ease-in-out infinite;
@@ -346,7 +345,7 @@
     top: -0.5px;
     width: 10px;
     height: 1px;
-    background: linear-gradient(90deg,rgba(255,255,255,0),var(--demo-spark));
+    background: linear-gradient(90deg,rgba($color-white, 0),var(--demo-spark));
   }
 
   &__spark-dot {
@@ -366,7 +365,7 @@
     border-radius: 21px;
     pointer-events: none;
     opacity: var(--demo-breathe-op);
-    transition: opacity .5s ease-in-out;
+    transition: opacity $duration-demo ease-in-out;
     transition-delay: var(--demo-step-delay);
   }
 
@@ -383,7 +382,7 @@
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 10px 14px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 10px 14px rgba($color-black, 0.6));
 
     &--ups {
       max-width: min(100%,190px);
@@ -395,11 +394,11 @@
   }
 
   &.is-on {
-    --demo-card-border: rgba(232, 184, 110, 0.12);
-    --demo-glow: rgba(232, 184, 110, 0.04);
+    --demo-card-border: #{rgba($color-warm, 0.12)};
+    --demo-glow: #{rgba($color-warm, 0.04)};
     --demo-thumb-bg: #{$color-text};
     --demo-thumb-x: translateX(0);
-    --demo-thumb-shadow: 0 0 28px rgba(255, 255, 255, 0.35);
+    --demo-thumb-shadow: 0 0 28px #{rgba($color-white, 0.35)};
     --demo-on-btn-fg: #{$color-black};
     --demo-off-btn-fg: #{$color-muted};
     --demo-bulb-on: 1;
@@ -410,15 +409,15 @@
   }
 
   &.is-on &__step {
-    --demo-step-border: rgba(232, 184, 110, 0.18);
-    --demo-step-shadow: 0 0 40px -12px rgba(232, 184, 110, 0.10);
+    --demo-step-border: #{rgba($color-warm, 0.18)};
+    --demo-step-shadow: 0 0 40px -12px #{rgba($color-warm, 0.10)};
     --demo-step-color: #{$color-warm};
     --demo-step-delay: 0ms;
   }
 
   &.is-on &__link {
-    --demo-line: rgba(232, 184, 110, 0.45);
-    --demo-spark: rgba(232, 184, 110, 0.9);
+    --demo-line: #{rgba($color-warm, 0.45)};
+    --demo-spark: #{rgba($color-warm, 0.9)};
   }
 
   &__link--out &__wave {
@@ -430,7 +429,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    box-shadow: 0 0 34px -6px rgba(59, 123, 255, 0.24);
+    box-shadow: 0 0 34px -6px rgba($color-accent, 0.24);
     opacity: 0;
     animation: demo-breathe-glow 6s ease-in-out infinite;
   }

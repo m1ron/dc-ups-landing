@@ -21,7 +21,7 @@
     transform: translateX(-50%);
     // The glow is a 1100x700 ellipse whose lower 200px lie below the page; only the part above the page
     // bottom is drawn, so the box ends at the bottom instead of sticking out (see the note on overflow).
-    background: radial-gradient(550px 350px at 50% 350px,rgba(59,123,255,0.28),rgba(59,123,255,0) 70%);
+    background: radial-gradient(550px 350px at 50% 350px,rgba($color-accent, 0.28),rgba($color-accent, 0) 70%);
     pointer-events: none;
     z-index: -1;
   }

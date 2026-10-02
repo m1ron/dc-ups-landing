@@ -1,5 +1,6 @@
 // Entry stylesheet for the landing: core → shared blocks → layout → page sections.
 
+@use 'core/normalize';
 @use 'core/fonts';
 @use 'core/base';
 @use 'components/blink';

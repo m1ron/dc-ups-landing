@@ -9,10 +9,6 @@
   color: $color-text-soft;
 
   &__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: $color-ok;
-    box-shadow: 0 0 8px $color-ok;
+    @include dot(7px, $color-ok);
   }
 }

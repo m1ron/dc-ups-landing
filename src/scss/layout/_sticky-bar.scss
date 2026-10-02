@@ -9,17 +9,17 @@
   z-index: 30;
   max-width: 520px;
   margin: 0 auto;
-  background: rgba(18,18,20,0.82);
+  background: rgba($color-glass, 0.82);
   @include backdrop-filter(blur(20px) saturate(1.4));
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 999px;
+  border: 1px solid $color-line-strong;
+  border-radius: $radius-pill;
   padding: 8px 8px 8px 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   transform: translateY(160%);
-  transition: transform .35s $ease-out;
+  transition: transform $duration-state $ease-out;
 
   &__info {
     display: flex;
@@ -39,17 +39,11 @@
   }
 
   &__buy {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $color-accent;
-    color: $color-white;
-    font-weight: 600;
+    @include button-pill;
     font-size: 16px;
     height: 48px;
     padding: 0 28px;
-    border-radius: 999px;
-    transition: transform .2s $ease-out;
+    transition: transform $duration-hover $ease-out;
 
     @include hover {
       background: $color-accent-hover;

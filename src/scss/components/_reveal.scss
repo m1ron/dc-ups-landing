@@ -9,7 +9,7 @@
 
     &.is-revealed {
       opacity: 1;
-      animation: reveal .9s $ease-out backwards;
+      animation: reveal $duration-reveal $ease-out backwards;
     }
   }
 }

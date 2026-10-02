@@ -2,12 +2,11 @@
 @use '../core/var' as *;
 
 .problem {
-  padding: 72px 20px 20px;
-  @include anchor-offset(72px);
+  padding: $section-top $gutter 20px;
+  @include anchor-offset($section-top);
 
   &__inner {
-    max-width: 1200px;
-    margin: 0 auto;
+    @include container;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -50,20 +49,20 @@
     flex: 1 1 340px;
     position: relative;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: $radius-card;
     padding: clamp(22px,3vw,32px);
     display: flex;
     flex-direction: column;
     gap: 24px;
 
     &--issue {
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid $color-line;
       background: $color-surface;
     }
 
     &--solution {
-      border: 1px solid rgba(59,123,255,0.5);
-      background: radial-gradient(600px circle at 100% 0%,rgba(59,123,255,0.16),transparent 60%),$color-surface;
+      border: 1px solid rgba($color-accent, 0.5);
+      background: radial-gradient(600px circle at 100% 0%,rgba($color-accent, 0.16),transparent 60%),$color-surface;
     }
   }
 
@@ -75,12 +74,8 @@
   }
 
   &__tag {
+    @include label-caps;
     margin: 0;
-    font-family: $font-ui;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
 
     &--issue {
       color: $color-danger;
@@ -97,7 +92,7 @@
     gap: 6px;
     font-size: 12px;
     padding: 5px 10px;
-    border-radius: 999px;
+    border-radius: $radius-pill;
 
     &--offline {
       border: 1px solid rgba(248,113,113,0.35);
@@ -105,7 +100,7 @@
     }
 
     &--online {
-      border: 1px solid rgba(74,222,128,0.35);
+      border: 1px solid rgba($color-ok, 0.35);
       color: $color-ok;
     }
   }
@@ -132,22 +127,22 @@
 
     &--muted {
       background: $color-dim;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.03);
+      box-shadow: 0 0 0 4px rgba($color-white, 0.03);
     }
 
     &--bad {
       background: $color-danger;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.03),0 0 10px $color-danger;
+      box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-danger;
     }
 
     &--ups {
       background: $color-accent;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.03),0 0 10px $color-accent;
+      box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-accent;
     }
 
     &--ok {
       background: $color-ok;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.03),0 0 10px $color-ok;
+      box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-ok;
     }
   }
 
@@ -166,11 +161,11 @@
     padding-top: 20px;
 
     &--issue {
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid $color-line;
     }
 
     &--solution {
-      border-top: 1px solid rgba(59,123,255,0.25);
+      border-top: 1px solid rgba($color-accent, 0.25);
     }
   }
 

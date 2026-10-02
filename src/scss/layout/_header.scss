@@ -12,18 +12,17 @@
   pointer-events: none;
 
   &__bar {
-    max-width: 1200px;
-    margin: 0 auto;
+    @include container;
     height: 52px;
     padding: 0 6px 0 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    background: rgba(18,18,20,0.72);
+    background: rgba($color-glass, 0.72);
     @include backdrop-filter(blur(20px) saturate(1.4));
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 999px;
+    border: 1px solid $color-line;
+    border-radius: $radius-pill;
     pointer-events: auto;
   }
 
@@ -40,13 +39,9 @@
 
     // Status dot; blinks with the shared "blink" keyframes (components/_blink.scss).
     &::before {
+      @include dot(8px, $color-accent, 12px);
       content: '';
       flex: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: $color-accent;
-      box-shadow: 0 0 12px $color-accent;
       animation: blink 3.2s linear infinite;
     }
   }
@@ -73,7 +68,7 @@
     height: 40px;
     overflow: hidden;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(xsl) {
       display: flex;
     }
 
@@ -88,7 +83,7 @@
       white-space: nowrap;
       color: $color-muted;
       font-size: 14px;
-      transition: color .2s $ease-out;
+      transition: color $duration-hover $ease-out;
 
       @include hover {
         color: $color-text;
@@ -105,10 +100,10 @@
     font-size: 14px;
     height: 40px;
     padding: 0 16px;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     flex: none;
     white-space: nowrap;
-    transition: transform .2s $ease-out;
+    transition: transform $duration-hover $ease-out;
 
     @include hover {
       background: $color-white;

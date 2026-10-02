@@ -2,12 +2,11 @@
 @use '../core/var' as *;
 
 .faq {
-  padding: 0 20px 96px;
+  padding: 0 $gutter $section-gap;
   @include anchor-offset;
 
   &__inner {
-    max-width: 1200px;
-    margin: 0 auto;
+    @include container;
     display: flex;
     flex-wrap: wrap;
     gap: 36px;
@@ -41,8 +40,8 @@
   &__item {
     border-radius: 18px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.07);
-    transition: background .35s $ease-out;
+    border: 1px solid rgba($color-white, 0.07);
+    transition: background $duration-state $ease-out;
 
     &.is-open {
       background: $color-surface-raised;
@@ -80,7 +79,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.08);
+    background: rgba($color-white, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +87,7 @@
     font-weight: 300;
     line-height: 1;
     transform: none;
-    transition: transform .35s $ease-out;
+    transition: transform $duration-state $ease-out;
   }
 
   &__item.is-open &__icon {
@@ -100,7 +99,7 @@
     display: grid;
     grid-template-rows: 0fr;
     visibility: hidden;
-    transition: grid-template-rows .35s $ease-out, visibility 0s .35s;
+    transition: grid-template-rows $duration-state $ease-out, visibility 0s $duration-state;
   }
 
   &__item.is-open &__answer {
@@ -121,7 +120,7 @@
     color: $color-muted;
     text-wrap: pretty;
     opacity: 0;
-    transition: opacity .35s $ease-out;
+    transition: opacity $duration-state $ease-out;
   }
 
   &__item.is-open &__answer-text {
