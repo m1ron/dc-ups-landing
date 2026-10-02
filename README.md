@@ -18,7 +18,7 @@ Vite serves the site at `http://localhost:5173` and compiles SCSS on the fly.
 
 Other commands:
 
-- `npm run build` — production build into `dist/` (one CSS file, one JS file, hashed names).
+- `npm run build` — production build into `dist/`: one CSS file and one JS file with hashed names, sorted into `css/`, `js/`, `fonts/` and `img/` (see `vite.config.js`).
 - `npm run preview` — serves `dist/` at `http://localhost:4173` to check the build.
 - `npm run lint` — ESLint over `src/js`.
 
@@ -30,6 +30,7 @@ Not set up yet. The build is static: upload the contents of `dist/`.
 
 ```
 index.html           the page; Vite entry
+vite.config.js       build output folders
 public/              files that keep their names (og-image.webp)
 src/
   scss/
