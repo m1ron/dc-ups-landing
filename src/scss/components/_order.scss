@@ -152,6 +152,7 @@
   }
 
   &__pay {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -166,10 +167,25 @@
     background: transparent;
     transition: border-color .35s $ease-out,background .35s $ease-out;
 
-    &.is-selected {
+    &:has(.order__pay-input:checked) {
       border: 1px solid rgba(59,123,255,0.55);
       background: rgba(59,123,255,0.08);
     }
+
+    &:has(.order__pay-input:focus-visible) {
+      outline: 2px solid $color-accent-soft;
+      outline-offset: 3px;
+    }
+  }
+
+  // Native radio: invisible but still focusable, so the keyboard and the form work without scripts.
+  &__pay-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__pay-mark {
@@ -183,7 +199,7 @@
     transition: border .35s $ease-out,background .35s $ease-out;
   }
 
-  &__pay.is-selected &__pay-mark {
+  &__pay:has(.order__pay-input:checked) &__pay-mark {
     border: 5px solid $color-accent;
     background: $color-white;
   }

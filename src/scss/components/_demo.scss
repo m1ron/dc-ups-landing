@@ -229,6 +229,7 @@
   }
 
   &__name {
+    margin: 0;
     font-size: clamp(15px,1.7vw,19px);
     font-weight: 600;
     letter-spacing: -0.02em;

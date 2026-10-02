@@ -48,6 +48,10 @@
     }
   }
 
+  &__heading {
+    margin: 0;
+  }
+
   &__question {
     width: 100%;
     background: none;
@@ -90,13 +94,17 @@
     transform: rotate(45deg);
   }
 
+  // A collapsed answer is hidden from screen readers and page search, but only after it has finished closing.
   &__answer {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows .35s $ease-out;
+    visibility: hidden;
+    transition: grid-template-rows .35s $ease-out, visibility 0s .35s;
   }
 
   &__item.is-open &__answer {
+    visibility: visible;
+    transition-delay: 0s;
     grid-template-rows: 1fr;
   }
 

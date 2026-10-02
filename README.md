@@ -53,6 +53,9 @@ src/
 - Design tokens are SCSS variables in `core/_var.scss`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
 - Breakpoints live in `core/_breakpoints.scss`: `sm` 420px (header shows the section links) and `md` 720px (demo steps sit in a row). Use `media-breakpoint-up()`.
 - Use the `hover` mixin for hover looks (hover-capable devices only, same look on keyboard focus) and the `backdrop-filter` mixin for blurred backdrops: the CSS minifier drops the standard property if the prefixed one is written after it.
+- The header menu (`.header__menu`) is the one place styled by tag: its `li` and `a` carry no classes.
+- Lists are real `ul` / `ol` / `dl` with `role="list"` where markers are removed (Safari drops list semantics otherwise). Payment options in the order dialog are native radio inputs inside their labels.
+- `vite.config.js` has a small plugin that keeps the `<head>` order of `index.html` in the built page (Vite would move the CSS and JS tags to the end).
 - `_src/` holds source photos and the design PDF. It is ignored by git and exists only locally.
 - The order form does not send anything yet: submitting only shows the confirmation (`src/js/components/order.js`).
 - Telegram / Viber links and the `/ru/`, `/en/` language links are placeholders.

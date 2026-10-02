@@ -74,10 +74,12 @@
   }
 
   &__tag {
+    margin: 0;
     font-family: $font-ui;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0.1em;
+    text-transform: uppercase;
 
     &--issue {
       color: $color-danger;

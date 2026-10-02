@@ -24,6 +24,20 @@ a {
   text-decoration: none;
 }
 
+// Lists are layout containers here, so markers and default indents are off.
+// They carry role="list" in the markup: Safari stops announcing a list once its markers are removed.
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dl,
+dd {
+  margin: 0;
+}
+
 // Custom focus ring instead of the browser default; blocks add their hover look on top.
 :focus-visible {
   outline: 2px solid $color-accent-soft;
