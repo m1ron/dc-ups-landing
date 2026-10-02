@@ -5,7 +5,7 @@ const HIDE_AT = 0.75; // share of the viewport height the order section's top ha
 export function initStickyBar() {
   const bar = document.querySelector('.sticky-bar');
   if (!bar) return;
-  const buy = document.getElementById('buy');
+  const buy = document.querySelector('.buy');
 
   const update = () => {
     const buyOnScreen = buy && buy.getBoundingClientRect().top < window.innerHeight * HIDE_AT;

@@ -1,14 +1,16 @@
-// Scroll reveal: hidden only when JS is running (.js), shown by reveal.js adding .is-revealed.
+// Scroll reveal: blocks start hidden and are shown by reveal.js adding .is-revealed.
+// They are hidden only where scripting is available, so the page is complete without JavaScript
+// (browsers that don't know this media query just show the blocks without the animation).
 @use '../core/var' as *;
 
 .reveal {
-  .js & {
+  @media (scripting: enabled) {
     opacity: 0;
-  }
 
-  .js &.is-revealed {
-    opacity: 1;
-    animation: reveal .9s $ease-out backwards;
+    &.is-revealed {
+      opacity: 1;
+      animation: reveal .9s $ease-out backwards;
+    }
   }
 }
 

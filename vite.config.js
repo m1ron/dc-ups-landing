@@ -10,11 +10,11 @@ function assetFolder(name = '') {
   return 'img';
 }
 
-// Vite appends the built JS and CSS tags to the end of <head>. This puts them back right after the
-// inline script, where index.html has them: scripts and styles go before preloads and meta tags.
+// Vite appends the built JS and CSS tags to the end of <head>. This puts them back under the
+// "Scripts and styles" comment, where index.html has them: before preloads and meta tags.
 function keepHeadOrder() {
   const BUILT_TAGS = /[ \t]*<(?:script type="module"|link rel="stylesheet") crossorigin[^>]*>(?:<\/script>)?\n/g;
-  const INLINE_SCRIPT = /([ \t]*)<script>[^<]*<\/script>\n/;
+  const ANCHOR = /([ \t]*)<!-- Scripts and styles -->\n/;
 
   return {
     name: 'keep-head-order',
@@ -23,11 +23,11 @@ function keepHeadOrder() {
       order: 'post',
       handler(html) {
         const tags = html.match(BUILT_TAGS);
-        const anchor = html.match(INLINE_SCRIPT);
+        const anchor = html.match(ANCHOR);
         if (!tags || !anchor) return html;
         const indent = anchor[1];
         const moved = tags.map((tag) => indent + tag.trim() + '\n').join('');
-        return html.replace(BUILT_TAGS, '').replace(INLINE_SCRIPT, (line) => line + moved);
+        return html.replace(BUILT_TAGS, '').replace(ANCHOR, (line) => line + moved);
       },
     },
   };
