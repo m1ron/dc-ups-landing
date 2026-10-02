@@ -36,30 +36,29 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    margin: 0;
     padding: 7px 14px 7px 8px;
     border-radius: 999px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
-    font-size: 13px;
-    color: $color-text-soft;
-    @include intro(.06s);
-  }
-
-  &__badge-dot {
-    width: 7px;
-    height: 7px;
-    margin-left: 6px;
-    border-radius: 50%;
-    background: $color-accent;
-    box-shadow: 0 0 8px $color-accent;
-  }
-
-  &__badge-text {
     font-family: $font-ui;
     font-weight: 500;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: $color-text-soft;
+    @include intro(.06s);
+
+    // Status dot in front of the label.
+    &::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      margin-left: 6px;
+      border-radius: 50%;
+      background: $color-accent;
+      box-shadow: 0 0 8px $color-accent;
+    }
   }
 
   &__title {
@@ -207,7 +206,6 @@
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 30px 40px rgba(0,0,0,0.6));
-    animation: hero-image 1.1s .45s ease-out backwards;
   }
 
   &__led {
@@ -287,14 +285,6 @@
 
 @keyframes hero-intro {
   from { opacity: 0; transform: translateY(8px); }
-}
-
-// The device "switches on": two short flickers, then full brightness.
-@keyframes hero-image {
-  0% { opacity: 0; }
-  12% { opacity: .35; }
-  20% { opacity: .1; }
-  100% { opacity: 1; }
 }
 
 @keyframes hero-led {
