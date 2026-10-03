@@ -2,20 +2,20 @@
 @use '../core/var' as *;
 
 .sweep {
+  height: 1px;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  height: 1px;
   overflow: hidden;
   pointer-events: none;
 
   &__line {
+    width: 30%;
+    height: 1px;
     position: absolute;
     top: 0;
     left: 0;
-    width: 30%;
-    height: 1px;
     background: linear-gradient(90deg,rgba($color-accent-soft, 0),rgba($color-accent-soft, 0.9),rgba($color-accent-soft, 0));
     animation: sweep 7s ease-in-out infinite;
   }
@@ -32,12 +32,16 @@
 
 @keyframes sweep {
   0% { transform: translateX(-100%); opacity: 0; }
+
   10%, 35% { opacity: 1; }
+
   45%, 100% { transform: translateX(340%); opacity: 0; }
 }
 
 @keyframes sweep-once {
   0% { transform: translateX(-100%); opacity: 0; }
+
   20% { opacity: 1; }
+
   100% { transform: translateX(340%); opacity: 0; }
 }

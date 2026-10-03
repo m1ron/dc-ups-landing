@@ -2,13 +2,13 @@
 @use '../core/var' as *;
 
 .order {
+  padding: 16px;
+  display: none;
   position: fixed;
   inset: 0;
   z-index: 50;
-  display: none;
   align-items: center;
   justify-content: center;
-  padding: 16px;
   overflow-y: auto;
 
   // display:none → flex restarts these, so they play on every open.
@@ -16,41 +16,44 @@
     position: fixed;
     inset: 0;
     background: rgba($color-black, 0.72);
-    @include backdrop-filter(blur(10px));
     animation: order-fade $duration-state $ease-out;
+    @include backdrop-filter(blur(10px));
   }
 
   &__card {
-    @include card($radius-card-lg, $color-line-strong);
-    position: relative;
     width: 100%;
     max-width: 960px;
     margin: auto;
+    display: grid;
+    position: relative;
     overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    box-shadow: 0 40px 120px rgba($color-black, 0.6);
     animation: order-card .5s $ease-out;
+    box-shadow: 0 40px 120px rgba($color-black, 0.6);
+    @include card($radius-card-lg, $color-line-strong);
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &__close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    z-index: 2;
     width: 44px;
     height: 44px;
     border-radius: 50%;
     border: 0;
+    display: flex;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
     cursor: pointer;
-    background: rgba($color-white, 0.08);
-    color: $color-text;
+    align-items: center;
+    justify-content: center;
     font-size: 26px;
     font-weight: 300;
     line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: $color-text;
+    background: rgba($color-white, 0.08);
     transition: background $duration-hover $ease-out,transform $duration-hover $ease-out;
 
     @include hover {
@@ -63,14 +66,13 @@
   }
 
   &__visual {
-    flex: 1 1 360px;
     min-height: 220px;
-    position: relative;
+    padding: 28px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
-    padding: 28px;
-    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba($color-accent, 0.16),rgba($color-black, 0)),#070708;
+    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba($color-accent, 0.16),rgba($color-black, 0)),$color-surface-deep;
   }
 
   &__image {
@@ -81,7 +83,6 @@
   }
 
   &__body {
-    flex: 1 1 380px;
     padding: clamp(24px,3.4vw,40px);
     display: flex;
     flex-direction: column;
@@ -89,10 +90,10 @@
   }
 
   &__product {
+    padding-right: 44px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-right: 44px;
   }
 
   &__name {
@@ -107,11 +108,11 @@
   }
 
   &__form {
+    padding: 18px 0 0;
+    border-top: 1px solid $color-line;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    padding: 18px 0 0;
-    border-top: 1px solid $color-line;
   }
 
   &__field {
@@ -130,10 +131,10 @@
     padding: 0 16px;
     border-radius: $radius-field;
     border: 1px solid rgba($color-white, 0.12);
-    background: $color-surface-raised;
-    color: $color-text;
-    font-size: 16px;
     outline: none;
+    font-size: 16px;
+    color: $color-text;
+    background: $color-surface-raised;
     transition: border-color $duration-hover $ease-out,box-shadow $duration-hover $ease-out;
 
     &:focus {
@@ -142,111 +143,36 @@
     }
   }
 
-  &__pays {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  &__pay {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    text-align: left;
-    padding: 13px 14px;
-    border-radius: $radius-field;
-    cursor: pointer;
-    color: $color-text;
-    border: 1px solid $color-line-strong;
-    background: transparent;
-    transition: border-color $duration-state $ease-out,background $duration-state $ease-out;
-
-    &:has(.order__pay-input:checked) {
-      border: 1px solid rgba($color-accent, 0.55);
-      background: rgba($color-accent, 0.08);
-    }
-
-    &:has(.order__pay-input:focus-visible) {
-      outline: 2px solid $color-accent-soft;
-      outline-offset: 3px;
-    }
-  }
-
-  // Native radio: invisible but still focusable, so the keyboard and the form work without scripts.
-  &__pay-input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: 0;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  &__pay::before {
-    content: '';
-    flex: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    border: 1.5px solid rgba($color-white, 0.28);
-    background: transparent;
-    transition: border $duration-state $ease-out,background $duration-state $ease-out;
-  }
-
-  &__pay:has(.order__pay-input:checked)::before {
-    border: 5px solid $color-accent;
-    background: $color-white;
-  }
-
-  &__pay-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  &__pay-title {
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  &__pay-note {
-    font-size: 12px;
-    color: $color-muted;
-  }
-
   &__total {
+    padding-top: 6px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 12px;
-    padding-top: 6px;
-  }
 
-  &__total-label {
-    font-size: 14px;
-    color: $color-muted;
-  }
+    &-label {
+      font-size: 14px;
+      color: $color-muted;
+    }
 
-  &__total-value {
-    font-family: $font-display;
-    font-size: clamp(32px,4vw,40px);
-    font-weight: 800;
-    letter-spacing: -0.045em;
-    line-height: 1;
+    &-value {
+      font-family: $font-display;
+      font-size: clamp(32px,4vw,40px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
   }
 
   &__submit {
-    @include button-pill;
-    gap: 10px;
     height: 62px;
     border: 0;
+    gap: 10px;
     cursor: pointer;
     font-size: 18px;
-    box-shadow: 0 10px 50px rgba($color-accent, 0.4);
     transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
+    box-shadow: 0 10px 50px rgba($color-accent, 0.4);
+    @include button-pill;
 
     @include hover {
       background: $color-accent-hover;
@@ -257,69 +183,69 @@
     &:active {
       transform: scale(0.98);
     }
-  }
 
-  &__submit::after {
-    @include glyph('→');
-    font-weight: 500;
-    font-size: 16px;
+    &::after {
+      font-size: 16px;
+      font-weight: 500;
+      @include glyph('→');
+    }
   }
 
   &__terms {
     font-size: 13px;
     line-height: 1.5;
-    color: $color-muted;
     text-align: center;
+    color: $color-muted;
   }
 
   &__success {
-    flex: 1;
+    min-height: 320px;
     display: none;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     gap: 16px;
-    min-height: 320px;
-  }
 
-  &__success::before {
-    @include glyph('✓');
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: rgba($color-ok, 0.12);
-    border: 1px solid rgba($color-ok, 0.4);
-    color: $color-ok;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 0 30px rgba($color-ok, 0.25);
-  }
+    &::before {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba($color-ok, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: $color-ok;
+      background: rgba($color-ok, 0.12);
+      box-shadow: 0 0 30px rgba($color-ok, 0.25);
+      @include glyph('✓');
+    }
 
-  &__success-title {
-    font-size: clamp(26px,3.4vw,34px);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.1;
-  }
+    &-title {
+      font-size: clamp(26px,3.4vw,34px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
 
-  &__success-text {
-    font-size: 16px;
-    line-height: 1.55;
-    color: $color-muted;
+    &-text {
+      font-size: 16px;
+      line-height: 1.55;
+      color: $color-muted;
+    }
   }
 
   &__done {
-    align-self: flex-start;
     height: 48px;
     padding: 0 24px;
     border-radius: $radius-pill;
     border: 1px solid rgba($color-white, 0.16);
-    background: transparent;
-    color: $color-text;
+    align-self: flex-start;
+    cursor: pointer;
     font-size: 15px;
     font-weight: 600;
-    cursor: pointer;
+    color: $color-text;
+    background: transparent;
 
     @include hover {
       background: rgba($color-white, 0.06);
@@ -331,6 +257,7 @@
   }
 
   &.is-sent &__product,
+
   &.is-sent &__form {
     display: none;
   }

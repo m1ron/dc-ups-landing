@@ -2,23 +2,22 @@
 @use '../core/var' as *;
 
 .feature {
-  flex: 1 1 340px;
+  padding: 28px;
   border-radius: $radius-card;
   border: 1px solid $color-line;
-  background: radial-gradient(400px circle at var(--feature-spot-x,0%) var(--feature-spot-y,0%),rgba($color-accent, 0.12),transparent 60%),$color-surface;
-  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 28px;
+  background: radial-gradient(400px circle at var(--feature-spot-x,0%) var(--feature-spot-y,0%),rgba($color-accent, 0.12),transparent 60%),$color-surface;
 
   &__chip {
-    display: inline-flex;
-    align-self: flex-start;
-    align-items: center;
     height: 44px;
     padding: 0 16px;
     border-radius: $radius-pill;
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
     gap: 8px;
 
     &--signal {
@@ -30,40 +29,36 @@
     }
 
     &--online {
-      font-size: 13px;
       border: 1px solid rgba($color-ok, 0.35);
+      font-size: 13px;
       color: $color-ok;
 
       &::before {
         content: '';
-        @include dot(7px, $color-ok);
         animation: blink 8.8s linear infinite;
+        @include dot(7px, $color-ok);
       }
+    }
+
+    &-label {
+      margin-left: 4px;
+      font-size: 13px;
+      color: $color-accent-soft;
     }
   }
 
   &__signal-dot {
     @include dot(8px, $color-ok);
 
-    &:nth-child(1) {
-      --blink-duration: 5.3s;
-    }
+    &:nth-child(1) { --blink-duration: 5.3s; }
 
-    &:nth-child(2) {
-      --blink-duration: 6s;
-    }
+    &:nth-child(2) { --blink-duration: 6s; }
 
-    &:nth-child(3) {
-      --blink-duration: 6.7s;
-    }
+    &:nth-child(3) { --blink-duration: 6.7s; }
 
-    &:nth-child(4) {
-      --blink-duration: 7.4s;
-    }
+    &:nth-child(4) { --blink-duration: 7.4s; }
 
-    &:nth-child(5) {
-      --blink-duration: 8.1s;
-    }
+    &:nth-child(5) { --blink-duration: 8.1s; }
   }
 
   &__body {
@@ -75,26 +70,26 @@
   &__title {
     margin: 0;
     font-size: 24px;
-    letter-spacing: -0.03em;
     font-weight: 600;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
 
   &__text {
+    min-height: 3.1em;
     margin: 0;
     font-size: 15px;
     line-height: 1.55;
     color: $color-muted;
-    min-height: 3.1em;
 
     // Voltage hint: fades out, feature.js swaps the text, then it rises back in.
     &--volt {
       transition: opacity $duration-state $ease-out, transform $duration-state $ease-out;
 
       &.is-swapping {
-        opacity: 0;
-        transform: translateY(6px);
         transition: opacity .25s ease-in, transform 0s .25s;
+        transform: translateY(6px);
+        opacity: 0;
       }
     }
   }
@@ -106,15 +101,15 @@
   }
 
   &__volt {
-    font-weight: 500;
-    font-size: 15px;
     height: 44px;
     padding: 0 16px;
     border-radius: $radius-pill;
-    cursor: pointer;
     border: 1px solid rgba($color-white, 0.14);
-    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
     color: $color-text-soft;
+    background: transparent;
     transition: background $duration-demo ease-in-out,border-color $duration-demo ease-in-out,color $duration-demo ease-in-out,transform $duration-hover $ease-out;
 
     &:active {
@@ -123,47 +118,40 @@
 
     &.is-active {
       border: 1px solid $color-accent;
-      background: $color-accent;
       color: $color-white;
+      background: $color-accent;
     }
   }
 
   &__cell {
-    position: relative;
-    display: inline-block;
     width: 20px;
     height: 11px;
     border-radius: 3px;
     border: 1.5px solid $color-accent-soft;
-    box-sizing: border-box;
     margin-right: 3px;
-  }
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
 
-  &__cell-fill {
-    position: absolute;
-    left: 1.5px;
-    top: 1.5px;
-    bottom: 1.5px;
-    right: 1.5px;
-    border-radius: 1px;
-    background: $color-accent;
-    box-shadow: 0 0 6px rgba($color-accent, 0.6);
-  }
+    &-fill {
+      border-radius: 1px;
+      position: absolute;
+      left: 1.5px;
+      top: 1.5px;
+      bottom: 1.5px;
+      right: 1.5px;
+      background: $color-accent;
+      box-shadow: 0 0 6px rgba($color-accent, 0.6);
+    }
 
-  &__cell-cap {
-    position: absolute;
-    right: -4px;
-    top: 2.5px;
-    width: 2px;
-    height: 3px;
-    border-radius: 0 1px 1px 0;
-    background: $color-accent-soft;
+    &-cap {
+      width: 2px;
+      height: 3px;
+      border-radius: 0 1px 1px 0;
+      position: absolute;
+      right: -4px;
+      top: 2.5px;
+      background: $color-accent-soft;
+    }
   }
-
-  &__chip-label {
-    font-size: 13px;
-    color: $color-accent-soft;
-    margin-left: 4px;
-  }
-
 }

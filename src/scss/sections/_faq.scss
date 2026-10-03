@@ -2,19 +2,20 @@
 @use '../core/var' as *;
 
 .faq {
-  padding: 0 $gutter $section-gap;
+  padding: 0 0 $section-gap;
   @include anchor-offset;
 
   &__inner {
-    @include container;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    align-items: start;
     gap: 36px;
-    align-items: flex-start;
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 2fr;
+    }
   }
 
   &__head {
-    flex: 1 1 300px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -27,7 +28,6 @@
   }
 
   &__body {
-    flex: 2 1 560px;
     min-width: 0;
   }
 
@@ -39,8 +39,8 @@
 
   &__item {
     border-radius: 18px;
-    background: transparent;
     border: 1px solid rgba($color-white, 0.07);
+    background: transparent;
     transition: background $duration-state $ease-out;
 
     &.is-open {
@@ -48,51 +48,51 @@
     }
   }
 
-  &__heading {
-    margin: 0;
-  }
-
+  // The question is the clickable heading itself (role="button" in the markup, Enter/Space handled in faq.js).
   &__question {
-    width: 100%;
-    background: none;
-    border: 0;
-    padding: 18px 18px 18px 22px;
     min-height: 64px;
+    padding: 18px 18px 18px 22px;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     cursor: pointer;
-    text-align: left;
-    color: $color-text;
-  }
-
-  &__question-text {
+    user-select: none;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.35;
+    color: $color-text;
+
+    // The "+" at the right of a question: two bars drawn by the pseudo-elements, both turn by 45° into a cross
+    // when the answer is open.
+    &-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      flex: none;
+      background: rgba($color-white, 0.08);
+
+      &::before,
+      &::after {
+        content: '';
+        width: 14px;
+        height: 2px;
+        margin: auto;
+        position: absolute;
+        inset: 0;
+        background: currentColor;
+        transition: transform $duration-state $ease-out;
+      }
+
+      &::after { transform: rotate(90deg); }
+    }
   }
 
-  // The "+" at the right of a question; turns into a cross when the answer is open.
-  &__question::after {
-    @include glyph('+');
-    flex: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba($color-white, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 1;
-    transform: none;
-    transition: transform $duration-state $ease-out;
-  }
-
-  &__item.is-open &__question::after {
-    transform: rotate(45deg);
+  &__item.is-open &__question-toggle {
+    &::before { transform: rotate(45deg); }
+    &::after { transform: rotate(135deg); }
   }
 
   // A collapsed answer is hidden from screen readers and page search, but only after it has finished closing.
@@ -101,27 +101,27 @@
     grid-template-rows: 0fr;
     visibility: hidden;
     transition: grid-template-rows $duration-state $ease-out, visibility 0s $duration-state;
+
+    &-clip {
+      overflow: hidden;
+    }
+
+    &-text {
+      padding: 0 60px 20px 22px;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+      text-wrap: pretty;
+      color: $color-muted;
+      transition: opacity $duration-state $ease-out;
+      opacity: 0;
+    }
   }
 
   &__item.is-open &__answer {
     visibility: visible;
-    transition-delay: 0s;
     grid-template-rows: 1fr;
-  }
-
-  &__answer-clip {
-    overflow: hidden;
-  }
-
-  &__answer-text {
-    margin: 0;
-    padding: 0 60px 20px 22px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: $color-muted;
-    text-wrap: pretty;
-    opacity: 0;
-    transition: opacity $duration-state $ease-out;
+    transition-delay: 0s;
   }
 
   &__item.is-open &__answer-text {

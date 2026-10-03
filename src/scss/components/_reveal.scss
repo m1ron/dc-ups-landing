@@ -8,8 +8,8 @@
     opacity: 0;
 
     &.is-revealed {
-      opacity: 1;
       animation: reveal $duration-reveal $ease-out backwards;
+      opacity: 1;
     }
   }
 }

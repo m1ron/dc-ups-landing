@@ -1,14 +1,10 @@
-// Order dialog: open / close, payment choice, and the "order accepted" state.
+// Order dialog: open / close and the "order accepted" state.
 // The form does not send anything yet: submitting only shows the confirmation.
-const SUBMIT_LABELS = { card: 'Перейти до оплати', cod: 'Підтвердити замовлення' }; // by payment option (radio value)
-
 export function initOrder() {
   const order = document.querySelector('.order');
   if (!order) return;
   const card = order.querySelector('.order__card');
   const form = order.querySelector('.order__form');
-  const pays = [...order.querySelectorAll('.order__pay-input')];
-  const submitLabel = order.querySelector('.order__submit-label');
   const success = order.querySelector('.order__success');
   let opener = null;
 
@@ -16,7 +12,6 @@ export function initOrder() {
     event.preventDefault();
     opener = event.currentTarget;
     form.reset();
-    updateSubmitLabel();
     order.classList.remove('is-sent');
     order.classList.add('is-open');
     document.body.style.overflow = 'hidden';
@@ -28,11 +23,6 @@ export function initOrder() {
     order.classList.remove('is-open');
     document.body.style.overflow = '';
     if (opener) opener.focus({ preventScroll: true });
-  };
-
-  const updateSubmitLabel = () => {
-    const selected = pays.find((pay) => pay.checked);
-    submitLabel.textContent = SUBMIT_LABELS[selected.value];
   };
 
   // Buy buttons live in other blocks (header, hero, order section, sticky bar).
@@ -59,8 +49,6 @@ export function initOrder() {
       first.focus();
     }
   });
-
-  pays.forEach((pay) => pay.addEventListener('change', updateSubmitLabel));
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();

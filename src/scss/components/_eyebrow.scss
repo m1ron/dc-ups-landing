@@ -2,8 +2,8 @@
 @use '../core/var' as *;
 
 .eyebrow {
-  @include label-caps(12px, 0.12em);
   color: $color-accent;
+  @include label-caps(12px, 0.12em);
 
   &--soft {
     color: $color-accent-soft;

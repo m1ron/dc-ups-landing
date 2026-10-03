@@ -14,8 +14,13 @@ export function initFaq() {
   };
 
   questions.forEach((question, index) => {
-    question.addEventListener('click', () => {
-      setOpen(items[index].classList.contains('is-open') ? -1 : index);
+    const toggle = () => setOpen(items[index].classList.contains('is-open') ? -1 : index);
+    question.addEventListener('click', toggle);
+    // The question is a heading with role="button", so it needs the button's keyboard contract.
+    question.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggle();
     });
   });
 }

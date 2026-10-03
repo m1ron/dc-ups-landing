@@ -2,13 +2,12 @@
 @use '../core/var' as *;
 
 .buy {
-  padding: $section-top $gutter 0;
+  padding: $section-top 0 0;
   @include anchor-offset($section-top);
 
   &__inner {
-    position: relative;
-    @include container;
     display: flex;
+    position: relative;
     flex-direction: column;
     gap: 40px;
   }
@@ -31,22 +30,24 @@
   }
 
   &__card {
-    @include card($radius-card-lg, $color-line-strong);
+    display: grid;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
+    @include card($radius-card-lg, $color-line-strong);
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &__visual {
-    flex: 1 1 420px;
     min-height: 340px;
-    position: relative;
+    padding: 32px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
-    padding: 32px;
-    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba($color-accent, 0.16),rgba($color-black, 0)),#070708;
+    background: radial-gradient(ellipse 60% 55% at 50% 52%,rgba($color-accent, 0.16),rgba($color-black, 0)),$color-surface-deep;
   }
 
   &__image {
@@ -57,7 +58,6 @@
   }
 
   &__details {
-    flex: 1 1 420px;
     padding: clamp(24px,3.4vw,44px);
     display: flex;
     flex-direction: column;
@@ -65,10 +65,10 @@
   }
 
   &__product {
+    --blink-duration: 9.5s;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    --blink-duration: 9.5s;
   }
 
   &__name {
@@ -95,109 +95,87 @@
     font-family: $font-display;
     font-size: clamp(44px,6vw,60px);
     font-weight: 800;
-    letter-spacing: -0.045em;
     line-height: 1;
+    letter-spacing: -0.045em;
   }
 
   &__perks {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     padding: 18px 0;
     border-top: 1px solid $color-line;
     border-bottom: 1px solid $color-line;
-  }
-
-  &__perks li {
-    @include check-mark;
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    font-size: 14px;
-    line-height: 1.45;
-    color: $color-text-soft;
+
+    li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: $color-text-soft;
+      @include check-mark;
+    }
   }
 
   &__payment {
     display: flex;
     flex-direction: column;
     gap: 8px;
-  }
 
-  &__payment-label {
-    @include label-caps(11px);
-    color: $color-accent-soft;
+    &-label {
+      color: $color-accent-soft;
+      @include label-caps(11px);
+    }
   }
 
   &__method {
+    padding: 12px 14px;
+    border-radius: $radius-field;
+    border: 1px solid rgba($color-accent, 0.45);
     display: flex;
     align-items: center;
     gap: 12px;
+    background: rgba($color-accent, 0.07);
 
-    &--card {
-      padding: 12px 14px;
-      border-radius: $radius-field;
-      border: 1px solid rgba($color-accent, 0.45);
-      background: rgba($color-accent, 0.07);
-    }
-
-    &--plain {
-      padding: 10px 14px;
-    }
-
-    // Radio-like mark: filled for the primary method, empty for the other.
+    // Filled radio-like mark.
     &::before {
       content: '';
-      flex: none;
       width: 16px;
       height: 16px;
       border-radius: 50%;
-    }
-
-    &--card::before {
       border: 5px solid $color-accent;
+      flex: none;
       background: $color-white;
     }
 
-    &--plain::before {
-      border: 1.5px solid rgba($color-white, 0.28);
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      strong {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 12px;
+        color: $color-muted;
+      }
     }
-  }
-
-  &__method-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  &__method-title {
-    &--main {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    &--alt {
-      font-size: 14px;
-      font-weight: 500;
-      color: $color-text-soft;
-    }
-  }
-
-  &__method-note {
-    font-size: 12px;
-    color: $color-muted;
   }
 
   &__cta {
-    @include button-pill;
-    gap: 10px;
     height: 64px;
+    gap: 10px;
     font-size: 19px;
-    box-shadow: 0 10px 50px rgba($color-accent, 0.4);
     transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
+    box-shadow: 0 10px 50px rgba($color-accent, 0.4);
+    @include button-pill;
 
     @include hover {
-      background: $color-accent-hover;
       color: $color-white;
+      background: $color-accent-hover;
       transform: translateY(-2px);
       box-shadow: 0 18px 60px rgba($color-accent, 0.55);
     }
@@ -208,30 +186,31 @@
   }
 
   &__facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(min(100%,220px),1fr));
-    gap: 1px;
-    background: rgba($color-white, 0.08);
     border: 1px solid $color-line;
     border-radius: 22px;
+    display: grid;
+    gap: 1px;
     overflow: hidden;
+    background: rgba($color-white, 0.08);
+    @include media-breakpoint-up(sm) { grid-template-columns: 1fr 1fr; }
+    @include media-breakpoint-up(lg) { grid-template-columns: repeat(4, 1fr); }
   }
 
   &__fact {
-    background: $color-surface;
     padding: 18px 20px;
     display: flex;
     flex-direction: column;
     gap: 6px;
-  }
+    background: $color-surface;
 
-  &__fact dt {
-    @include label-caps(11px);
-    color: $color-accent-soft;
-  }
+    dt {
+      color: $color-accent-soft;
+      @include label-caps(11px);
+    }
 
-  &__fact dd {
-    font-size: 15px;
-    line-height: 1.4;
+    dd {
+      font-size: 15px;
+      line-height: 1.4;
+    }
   }
 }

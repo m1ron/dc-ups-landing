@@ -4,7 +4,7 @@
     <!-- Document basics -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Бесперебійник для роутера — інтернет не зникає разом зі світлом · 1 499 ₴</title>
+    <title>Бесперебійник (UPS) для роутера — інтернет не зникає разом зі світлом</title>
 
     <!-- Scripts and styles -->
     <script type="module" src="/src/js/main.js"></script>
@@ -12,8 +12,8 @@
 
     <!-- Preloads for the first screen: product image and the two Cyrillic fonts -->
     <link rel="preload" as="image" href="/src/img/ups-main.webp" fetchpriority="high">
-    <link rel="preload" as="font" type="font/woff2" href="/src/fonts/manrope-cyrillic.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/src/fonts/inter-cyrillic.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/src/fonts/manrope.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/src/fonts/inter.woff2" crossorigin>
 
     <!-- Search engines -->
     <meta name="description" content="UPS для Wi‑Fi роутера 5V / 9V / 12V: автоматично переходить на акумулятор, коли зникає світло. Акумулятори в комплекті. Нова пошта 1–2 дні, гарантія 12 місяців.">
@@ -24,7 +24,7 @@
     <meta property="og:locale" content="uk_UA">
     <meta property="og:url" content="https://potuzhno.pp.ua/dc-ups/">
     <meta property="og:title" content="Бесперебійник для роутера — інтернет не зникає разом зі світлом">
-    <meta property="og:description" content="Автоматичне резервне живлення для Wi‑Fi роутера. 5V / 9V / 12V, акумулятори в комплекті. 1 499 ₴.">
+    <meta property="og:description" content="Автоматичне резервне живлення для Wi‑Fi роутера. 5V / 9V / 12V, акумулятори в комплекті.">
     <meta property="og:image" content="https://potuzhno.pp.ua/dc-ups/og-image.webp">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:image:width" content="1100">
@@ -43,32 +43,32 @@
         <div class="header__bar">
             <a class="header__logo" href="#top">UPS для роутера</a>
             <nav class="header__nav" aria-label="Розділи">
-                <ul class="header__menu" role="list">
+                <menu class="header__menu" role="list">
                     <li><a href="#demo">Як працює</a></li>
                     <li><a href="#specs">Деталі</a></li>
                     <li><a href="#faq">Питання</a></li>
-                </ul>
+                </menu>
                 <a class="header__buy" href="#buy" data-order-open>Купити</a>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="main" id="top">
         <!-- 01 HERO -->
-        <section class="hero" id="top">
+        <section class="hero">
             <div class="hero__glow"></div>
-            <div class="hero__inner">
+            <div class="container hero__inner">
                 <p class="hero__badge">Резервне живлення для роутера</p>
                 <h1 class="hero__title">Інтернет не зникає разом зі світлом.</h1>
                 <p class="hero__lead">Бесперебійник для Wi‑Fi роутера, який автоматично підтримує його роботу під час відключення електроенергії.</p>
                 <div class="hero__cta">
-                    <div class="hero__price"><span class="hero__price-value">1 499 ₴</span></div>
+                    <div class="hero__price"><span class="hero__price-value">1&nbsp;499&nbsp;грн.</span></div>
                     <a class="hero__buy" href="#buy" data-order-open>Купити</a>
                     <span class="stock">В наявності · відправка сьогодні</span>
                 </div>
                 <ul class="hero__perks" role="list">
                     <li>Нова пошта</li>
-                    <li>Оплата карткою онлайн · або при отриманні</li>
+                    <li>Оплата карткою онлайн</li>
                     <li>Гарантія 12 місяців</li>
                 </ul>
                 <div class="hero__visual">
@@ -93,7 +93,7 @@
 
         <!-- 02 PROBLEM -> SOLUTION -->
         <section class="problem" id="problem">
-            <div class="problem__inner">
+            <div class="container problem__inner">
                 <div class="problem__head reveal">
                     <span class="eyebrow"><span aria-hidden="true">//</span> Проблема → рішення</span>
                     <h2 class="title problem__title">Світло зникає — <span class="title__muted">інтернет теж.</span></h2>
@@ -128,71 +128,68 @@
 
         <!-- 03 HOW -->
         <section class="demo" id="demo">
-            <div class="demo__card reveal">
-                <div class="demo__glow"></div>
-                <div class="demo__head">
-                    <span class="eyebrow"><span aria-hidden="true">//</span> Як це працює</span>
-                    <h2 class="title demo__title">Увімкнув і забув.</h2>
-                </div>
-                <div class="demo__controls">
-                    <div class="demo__switch" role="group" aria-label="Світло">
-                        <div class="demo__switch-thumb"></div>
-                        <button class="demo__switch-btn demo__switch-btn--on" type="button" data-power="on" aria-pressed="false">Є світло</button>
-                        <button class="demo__switch-btn demo__switch-btn--off" type="button" data-power="off" aria-pressed="true">Світло зникло</button>
+            <div class="container">
+                <div class="demo__card reveal">
+                    <div class="demo__glow"></div>
+                    <div class="demo__head">
+                        <span class="eyebrow"><span aria-hidden="true">//</span> Як це працює</span>
+                        <h2 class="title demo__title">Увімкнув і забув.</h2>
                     </div>
-
-                </div>
-                <ol class="demo__flow" role="list">
-                    <li class="demo__step demo__step--grid">
-                        <div class="demo__media">
-                            <div class="demo__bulb">
-                                <span class="demo__bulb-glow"></span>
-                                <img class="demo__bulb-img" src="/src/img/bulb-off.webp" width="360" height="409" loading="lazy" decoding="async" alt>
-                                <img class="demo__bulb-img demo__bulb-img--on" src="/src/img/bulb-on.webp" width="360" height="409" loading="lazy" decoding="async" alt>
+                    <div class="demo__controls">
+                        <div class="demo__switch" role="group" aria-label="Світло">
+                            <div class="demo__switch-thumb"></div>
+                            <button class="demo__switch-btn demo__switch-btn--on" type="button" data-power="on" aria-pressed="false">Є світло</button>
+                            <button class="demo__switch-btn demo__switch-btn--off" type="button" data-power="off" aria-pressed="true">Світло зникло</button>
+                        </div>
+                    </div>
+                    <ol class="demo__flow" role="list">
+                        <li class="demo__step demo__step--grid">
+                            <div class="demo__media">
+                                <div class="demo__bulb">
+                                    <span class="demo__bulb-glow"></span>
+                                    <img class="demo__bulb-img" src="/src/img/bulb-off.webp" width="360" height="409" loading="lazy" decoding="async" alt>
+                                    <img class="demo__bulb-img demo__bulb-img--on" src="/src/img/bulb-on.webp" width="360" height="409" loading="lazy" decoding="async" alt>
+                                </div>
                             </div>
-                        </div>
-                        <div class="demo__info">
-                            <h3 class="demo__name"><span class="demo__when-on" aria-hidden="true">Є світло</span><span class="demo__when-off" aria-hidden="false">Світла немає</span></h3>
-                            <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Розетка подає живлення.</span><span class="demo__when-off" aria-hidden="false">Живлення від мережі відсутнє.</span></span>
-                        </div>
-                    </li>
-                    <li class="demo__link demo__link--in" aria-hidden="true"><span class="demo__link-line"></span><span class="demo__link-live"><span class="demo__wave-clip"><span class="demo__wave"></span></span><span class="demo__spark"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--2"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--3"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span></span></li>
-                    <li class="demo__step demo__step--ups"><span class="demo__halo" aria-hidden="true"><span class="demo__halo-ring"><span class="demo__halo-glow"></span></span></span>
-                        <div class="demo__media"><img class="demo__device demo__device--ups" src="/src/img/ups-main.webp" width="1100" height="919" loading="lazy" decoding="async" alt></div>
-                        <div class="demo__info">
-                            <h3 class="demo__name">Резервне живлення від UPS</h3>
-                            <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Працює від мережі.
-Автоматично переходить на акумулятор.</span><span class="demo__when-off" aria-hidden="false">UPS автоматично перейшов на акумулятор.</span></span>
-                        </div>
-                    </li>
-                    <li class="demo__link demo__link--out" aria-hidden="true"><span class="demo__link-line"></span><span class="demo__wave-clip"><span class="demo__wave"></span></span><span class="demo__spark"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--2"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--3"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span></li>
-                    <li class="demo__step demo__step--router"><span class="demo__halo" aria-hidden="true"><span class="demo__halo-ring"><span class="demo__halo-glow"></span></span></span>
-                        <div class="demo__media"><img class="demo__device demo__device--router" src="/src/img/router.webp" width="600" height="600" loading="lazy" decoding="async" alt="Wi‑Fi роутер"></div>
-                        <div class="demo__info">
-                            <h3 class="demo__name">Роутер працює</h3>
-                            <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Отримує живлення та залишається онлайн.</span><span class="demo__when-off" aria-hidden="false">Продовжує працювати від UPS.</span></span>
-                        </div>
-                    </li>
-                </ol>
+                            <div class="demo__info">
+                                <h3 class="demo__name"><span class="demo__when-on" aria-hidden="true">Є світло</span><span class="demo__when-off" aria-hidden="false">Світла немає</span></h3>
+                                <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Розетка подає живлення.</span><span class="demo__when-off" aria-hidden="false">Живлення від мережі відсутнє.</span></span>
+                            </div>
+                        </li>
+                        <li class="demo__link demo__link--in" aria-hidden="true"><span class="demo__link-line"></span><span class="demo__link-live"><span class="demo__wave-clip"><span class="demo__wave"></span></span><span class="demo__spark"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--2"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--3"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span></span></li>
+                        <li class="demo__step demo__step--ups"><span class="demo__halo" aria-hidden="true"><span class="demo__halo-ring"><span class="demo__halo-glow"></span></span></span>
+                            <div class="demo__media"><img class="demo__device demo__device--ups" src="/src/img/ups-main.webp" width="1100" height="919" loading="lazy" decoding="async" alt></div>
+                            <div class="demo__info">
+                                <h3 class="demo__name">Резервне живлення від UPS</h3>
+                                <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Працює від мережі. Автоматично переходить на акумулятор.</span><span class="demo__when-off" aria-hidden="false">UPS автоматично перейшов на акумулятор.</span></span>
+                            </div>
+                        </li>
+                        <li class="demo__link demo__link--out" aria-hidden="true"><span class="demo__link-line"></span><span class="demo__wave-clip"><span class="demo__wave"></span></span><span class="demo__spark"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--2"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span><span class="demo__spark demo__spark--3"><span class="demo__spark-tail"></span><span class="demo__spark-dot"></span></span></li>
+                        <li class="demo__step demo__step--router"><span class="demo__halo" aria-hidden="true"><span class="demo__halo-ring"><span class="demo__halo-glow"></span></span></span>
+                            <div class="demo__media"><img class="demo__device demo__device--router" src="/src/img/router.webp" width="600" height="600" loading="lazy" decoding="async" alt="Wi‑Fi роутер"></div>
+                            <div class="demo__info">
+                                <h3 class="demo__name">Роутер працює</h3>
+                                <span class="demo__desc"><span class="demo__when-on" aria-hidden="true">Отримує живлення та залишається онлайн.</span><span class="demo__when-off" aria-hidden="false">Продовжує працювати від UPS.</span></span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </section>
 
         <!-- 04 USE CASE -->
         <section class="usecase" id="usecase">
-            <div class="usecase__inner">
+            <div class="container usecase__inner">
                 <div class="usecase__head reveal">
                     <span class="eyebrow"><span aria-hidden="true">//</span> Вдома під час відключення</span>
                     <h2 class="title usecase__title">Коли вдома темно — <span class="title__muted">ви залишаєтесь онлайн.</span></h2>
                     <p class="usecase__lead">Робота з дому, навчання, відео, месенджери, розумний дім — усе продовжує працювати, поки роутер отримує живлення.</p>
                 </div>
                 <div class="usecase__cards">
-                    <div class="usecase__photo reveal">
-                        <img class="usecase__photo-img" src="/src/img/desk.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Бесперебійник поруч із Wi‑Fi роутером удома">
-                        <div class="usecase__photo-shade"></div>
-                        <div class="usecase__photo-tags">
-                            <span class="usecase__photo-tag"><b class="usecase__photo-tag-strong">Компактний</b> — стає поруч із роутером</span>
-                        </div>
-                    </div>
+                    <figure class="usecase__photo reveal">
+                        <img src="/src/img/desk.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Бесперебійник поруч із Wi‑Fi роутером удома">
+                        <figcaption><span class="usecase__photo-tag"><strong>Компактний</strong> — стає поруч із роутером</span></figcaption>
+                    </figure>
                     <div class="usecase__panel reveal">
                         <ul class="usecase__list" role="list">
                             <li><strong>Робота з дому</strong><span>дзвінки не обриваються</span></li>
@@ -202,9 +199,11 @@
                             <li><strong>Розумний дім</strong><span>камери й датчики онлайн</span></li>
                         </ul>
                         <div class="usecase__summary">
-                            <span class="usecase__summary-title">UPS для роутера</span>
-                            <div class="usecase__summary-line">Перемикається автоматично</div>
-                            <div class="usecase__summary-line">Роутер отримує живлення без вашої участі</div>
+                            <p>UPS для роутера</p>
+                            <ul role="list">
+                                <li>Перемикається автоматично</li>
+                                <li>Роутер отримує живлення без вашої участі</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -223,8 +222,6 @@
                         <div class="feature__body"><h3 class="feature__title">Працює з роутерами 5V / 9V / 12V</h3>
                             <p class="feature__text feature__text--volt">Перевірте напругу на адаптері вашого роутера: 12V — оберіть вихід 12V.</p></div>
                     </div>
-                </div>
-                <div class="usecase__features">
                     <div class="feature reveal">
                         <div class="feature__chip feature__chip--battery"><span class="feature__cell"><span class="feature__cell-fill"></span><span class="feature__cell-cap"></span></span><span class="feature__cell"><span class="feature__cell-fill"></span><span class="feature__cell-cap"></span></span><span class="feature__cell"><span class="feature__cell-fill"></span><span class="feature__cell-cap"></span></span><span class="feature__cell"><span class="feature__cell-fill"></span><span class="feature__cell-cap"></span></span><span class="feature__chip-label">4 × 18650</span></div>
                         <div class="feature__body"><h3 class="feature__title">Акумулятори вже в комплекті</h3>
@@ -241,146 +238,148 @@
 
         <!-- 06 TECH -->
         <section class="specs" id="specs">
-            <div class="specs__card reveal">
-                <div class="sweep"><span class="sweep__line"></span></div>
-                <div class="specs__head">
-                    <div class="specs__heading">
-                        <span class="eyebrow"><span aria-hidden="true">//</span> Деталі</span>
-                        <h2 class="title specs__title">Технічні характеристики</h2>
+            <div class="container">
+                <div class="specs__card reveal">
+                    <div class="sweep"><span class="sweep__line"></span></div>
+                    <div class="specs__head">
+                        <div class="specs__heading">
+                            <span class="eyebrow"><span aria-hidden="true">//</span> Деталі</span>
+                            <h2 class="title specs__title">Технічні характеристики</h2>
+                        </div>
+                        <div class="specs__tabs" role="tablist" aria-label="Технічні характеристики">
+                            <div class="specs__thumb" role="presentation"></div>
+                            <button class="specs__tab is-active" type="button" role="tab" id="specs-tab-1" aria-controls="specs-panel-1" aria-selected="true" tabindex="0">Основне</button>
+                            <button class="specs__tab" type="button" role="tab" id="specs-tab-2" aria-controls="specs-panel-2" aria-selected="false" tabindex="-1">Комплектація</button>
+                            <button class="specs__tab" type="button" role="tab" id="specs-tab-3" aria-controls="specs-panel-3" aria-selected="false" tabindex="-1">Характеристики</button>
+                        </div>
                     </div>
-                    <div class="specs__tabs" role="tablist" aria-label="Технічні характеристики">
-                        <div class="specs__thumb" role="presentation"></div>
-                        <button class="specs__tab is-active" type="button" role="tab" id="specs-tab-1" aria-controls="specs-panel-1" aria-selected="true" tabindex="0">Основне</button>
-                        <button class="specs__tab" type="button" role="tab" id="specs-tab-2" aria-controls="specs-panel-2" aria-selected="false" tabindex="-1">Комплектація</button>
-                        <button class="specs__tab" type="button" role="tab" id="specs-tab-3" aria-controls="specs-panel-3" aria-selected="false" tabindex="-1">Характеристики</button>
-                    </div>
-                </div>
-                <div class="specs__viewport">
-                    <div class="specs__track">
-                        <div class="specs__panel is-active" aria-hidden="false" role="tabpanel" id="specs-panel-1" aria-labelledby="specs-tab-1">
-                            <div class="specs__split">
-                                <div class="specs__figure specs__figure--device">
-                                    <img class="specs__figure-img specs__figure-img--device" src="/src/img/ups-front.webp" width="1000" height="511" loading="lazy" decoding="async" alt="Роз'єми бесперебійника">
+                    <div class="specs__viewport">
+                        <div class="specs__track">
+                            <div class="specs__panel is-active" aria-hidden="false" role="tabpanel" id="specs-panel-1" aria-labelledby="specs-tab-1">
+                                <div class="specs__split">
+                                    <div class="specs__figure specs__figure--device">
+                                        <img class="specs__figure-img specs__figure-img--device" src="/src/img/ups-front.webp" width="1000" height="511" loading="lazy" decoding="async" alt="Роз'єми бесперебійника">
+                                    </div>
+                                    <dl class="specs__features">
+                                        <div>
+                                            <dt>Потужність</dt>
+                                            <dd>18 W</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Вихід</dt>
+                                            <dd>5V / 9V / 12V</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Перемикання</dt>
+                                            <dd>автоматичне</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Акумулятори</dt>
+                                            <dd>4 × 18650, встановлені</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Індикація</dt>
+                                            <dd>мережа + рівень заряду</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Розміри</dt>
+                                            <dd>16 × 10,5 × 3,4 см</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Гарантія</dt>
+                                            <dd>12 місяців</dd>
+                                        </div>
+                                    </dl>
                                 </div>
-                                <dl class="specs__tiles">
-                                    <div class="specs__tile">
+                            </div>
+                            <div class="specs__panel" aria-hidden="true" role="tabpanel" id="specs-panel-2" aria-labelledby="specs-tab-2">
+                                <div class="specs__split">
+                                    <div class="specs__figure specs__figure--box"><img class="specs__figure-img" src="/src/img/in-the-box.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="Комплектація"></div>
+                                    <ol class="specs__box-list" role="list">
+                                        <li>Бесперебійник (DC UPS)</li>
+                                        <li>Акумулятори — вже встановлені</li>
+                                        <li>Мережевий кабель 220V</li>
+                                        <li>Кабель DC–DC</li>
+                                        <li>Кабель-розгалужувач DC на 2 пристрої</li>
+                                        <li>Викрутка</li>
+                                        <li>Інструкція</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="specs__panel" aria-hidden="true" role="tabpanel" id="specs-panel-3" aria-labelledby="specs-tab-3">
+                                <dl class="specs__table">
+                                    <div class="specs__row">
+                                        <dt>Вхід</dt>
+                                        <dd>AC 85–265V, вбудований блок живлення</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>Вихід DC 5V</dt>
+                                        <dd>2A</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>Вихід DC 9V</dt>
+                                        <dd>1A</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>Вихід DC 12V</dt>
+                                        <dd>1A</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>USB</dt>
+                                        <dd>5V / 2A</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>PoE</dt>
+                                        <dd>15V або 24V · 0,6A (перемикач)</dd>
+                                    </div>
+                                    <div class="specs__row">
+                                        <dt>LAN</dt>
+                                        <dd>1 × RJ45</dd>
+                                    </div>
+                                    <div class="specs__row">
                                         <dt>Потужність</dt>
-                                        <dd>18 W</dd>
+                                        <dd>18 Вт</dd>
                                     </div>
-                                    <div class="specs__tile">
-                                        <dt>Вихід</dt>
-                                        <dd>5V / 9V / 12V</dd>
-                                    </div>
-                                    <div class="specs__tile">
+                                    <div class="specs__row">
                                         <dt>Перемикання</dt>
-                                        <dd>автоматичне</dd>
+                                        <dd>автоматичне, в обидва боки</dd>
                                     </div>
-                                    <div class="specs__tile">
+                                    <div class="specs__row">
+                                        <dt>Автономність</dt>
+                                        <dd>до 8 годин* (залежить від роутера)</dd>
+                                    </div>
+                                    <div class="specs__row">
                                         <dt>Акумулятори</dt>
                                         <dd>4 × 18650, встановлені</dd>
                                     </div>
-                                    <div class="specs__tile">
+                                    <div class="specs__row">
                                         <dt>Індикація</dt>
-                                        <dd>мережа + рівень заряду</dd>
+                                        <dd>статус мережі + 4 рівні заряду (25%)</dd>
                                     </div>
-                                    <div class="specs__tile">
+                                    <div class="specs__row">
+                                        <dt>Кнопки</dt>
+                                        <dd>живлення · RESET</dd>
+                                    </div>
+                                    <div class="specs__row">
                                         <dt>Розміри</dt>
-                                        <dd>16 × 10,5 × 3,4 см</dd>
+                                        <dd>161 × 105 × 34 мм</dd>
                                     </div>
-                                    <div class="specs__tile">
+                                    <div class="specs__row">
                                         <dt>Гарантія</dt>
                                         <dd>12 місяців</dd>
                                     </div>
                                 </dl>
                             </div>
                         </div>
-                        <div class="specs__panel" aria-hidden="true" role="tabpanel" id="specs-panel-2" aria-labelledby="specs-tab-2">
-                            <div class="specs__split">
-                                <div class="specs__figure specs__figure--box"><img class="specs__figure-img" src="/src/img/in-the-box.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="Комплектація"></div>
-                                <ol class="specs__box-list" role="list">
-                                    <li>Бесперебійник (DC UPS)</li>
-                                    <li>Акумулятори — вже встановлені</li>
-                                    <li>Мережевий кабель 220V</li>
-                                    <li>Кабель DC–DC</li>
-                                    <li>Кабель-розгалужувач DC на 2 пристрої</li>
-                                    <li>Викрутка</li>
-                                    <li>Інструкція</li>
-                                </ol>
-                            </div>
-                        </div>
-                        <div class="specs__panel" aria-hidden="true" role="tabpanel" id="specs-panel-3" aria-labelledby="specs-tab-3">
-                            <dl class="specs__table">
-                                <div class="specs__row">
-                                    <dt>Вхід</dt>
-                                    <dd>AC 85–265V, вбудований блок живлення</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Вихід DC 5V</dt>
-                                    <dd>2A</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Вихід DC 9V</dt>
-                                    <dd>1A</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Вихід DC 12V</dt>
-                                    <dd>1A</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>USB</dt>
-                                    <dd>5V / 2A</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>PoE</dt>
-                                    <dd>15V або 24V · 0,6A (перемикач)</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>LAN</dt>
-                                    <dd>1 × RJ45</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Потужність</dt>
-                                    <dd>18 Вт</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Перемикання</dt>
-                                    <dd>автоматичне, в обидва боки</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Автономність</dt>
-                                    <dd>до 8 годин* (залежить від роутера)</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Акумулятори</dt>
-                                    <dd>4 × 18650, встановлені</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Індикація</dt>
-                                    <dd>статус мережі + 4 рівні заряду (25%)</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Кнопки</dt>
-                                    <dd>живлення · RESET</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Розміри</dt>
-                                    <dd>161 × 105 × 34 мм</dd>
-                                </div>
-                                <div class="specs__row">
-                                    <dt>Гарантія</dt>
-                                    <dd>12 місяців</dd>
-                                </div>
-                            </dl>
-                        </div>
                     </div>
+                    <p class="specs__note">Технічна назва пристрою — DC UPS.</p>
                 </div>
-                <p class="specs__note">Технічна назва пристрою — DC UPS.</p>
             </div>
         </section>
 
         <!-- 05 FAQ -->
         <section class="faq" id="faq">
-            <div class="faq__inner">
+            <div class="container faq__inner">
                 <div class="faq__head reveal">
                     <span class="eyebrow"><span aria-hidden="true">//</span> Питання</span>
                     <h2 class="title faq__title">Часті питання.</h2>
@@ -388,81 +387,49 @@
                 <div class="faq__body reveal">
                     <div class="faq__list">
                         <div class="faq__item is-open">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="true" aria-controls="faq-answer-1">
-                                    <span class="faq__question-text">Чи буде інтернет під час відключення?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="true" aria-controls="faq-answer-1">Чи буде інтернет під час відключення?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-1">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">UPS забезпечує резервне живлення вашого роутера. Чи буде доступний сам інтернет під час відключення, залежить від вашого інтернет-провайдера та його інфраструктури.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
-                                    <span class="faq__question-text">Чи треба щось перемикати вручну?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-2">Чи треба щось перемикати вручну?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-2">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Ні. Пристрій автоматично переходить на резервне живлення, коли зникає електроенергія.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
-                                    <span class="faq__question-text">Скільки часу працюватиме роутер?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-3">Скільки часу працюватиме роутер?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-3">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Залежить від споживання конкретного роутера. Фактичний час автономної роботи буде вказаний на основі тестування.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
-                                    <span class="faq__question-text">Чи підійде до мого роутера?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-4">Чи підійде до мого роутера?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-4">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">UPS підтримує вихідну напругу 5V, 9V і 12V. Подивіться напругу на адаптері вашого роутера та оберіть відповідний вихід.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-5">
-                                    <span class="faq__question-text">Як увімкнути вперше?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-5">Як увімкнути вперше?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-5">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Підключіть UPS до мережі, підключіть роутер до відповідного виходу — пристрій готовий до роботи.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-6">
-                                    <span class="faq__question-text">Чи безпечно залишати UPS підключеним постійно?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-6">Чи безпечно залишати UPS підключеним постійно?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-6">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Так. Пристрій призначений для постійного підключення та використання вдома.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-7">
-                                    <span class="faq__question-text">Чи входять акумулятори в комплект?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-7">Чи входять акумулятори в комплект?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-7">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Так. Акумулятори вже встановлені в пристрої.</p></div>
                             </div>
                         </div>
                         <div class="faq__item">
-                            <h3 class="faq__heading">
-                                <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-8">
-                                    <span class="faq__question-text">Що показують індикатори?</span>
-                                </button>
-                            </h3>
+                            <h3 class="faq__question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-8">Що показують індикатори?<span class="faq__question-toggle" aria-hidden="true"></span></h3>
                             <div class="faq__answer" id="faq-answer-8">
                                 <div class="faq__answer-clip"><p class="faq__answer-text">Індикатори показують стан живлення та рівень заряду.</p></div>
                             </div>
@@ -475,7 +442,7 @@
         <!-- 08 BUY -->
         <section class="buy" id="buy">
 
-            <div class="buy__inner">
+            <div class="container buy__inner">
                 <div class="buy__head reveal">
                     <span class="eyebrow eyebrow--soft">Замовлення</span>
                     <h2 class="title buy__title">Роутер працює, навіть коли світла немає.</h2>
@@ -491,7 +458,7 @@
                             <span class="stock">В наявності · відправимо сьогодні</span>
                         </div>
                         <div class="buy__price-row">
-                            <span class="buy__price">1 499 ₴</span>
+                            <span class="buy__price">1&nbsp;499&nbsp;грн.</span>
 
                         </div>
                         <ul class="buy__perks" role="list">
@@ -502,8 +469,7 @@
                         </ul>
                         <div class="buy__payment">
                             <span class="buy__payment-label">Оплата</span>
-                            <div class="buy__method buy__method--card"><span class="buy__method-text"><span class="buy__method-title buy__method-title--main">Карткою онлайн</span><span class="buy__method-note">Visa · Mastercard · Apple Pay · Google Pay</span></span></div>
-                            <div class="buy__method buy__method--plain"><span class="buy__method-text"><span class="buy__method-title buy__method-title--alt">або при отриманні</span><span class="buy__method-note">у відділенні Нової пошти</span></span></div>
+                            <div class="buy__method"><span class="buy__method-text"><strong>Карткою онлайн</strong><span>Visa · Mastercard · Apple Pay · Google Pay</span></span></div>
                         </div>
                         <a class="buy__cta" href="#buy" data-order-open>Купити</a>
                     </div>
@@ -515,7 +481,7 @@
                     </div>
                     <div class="buy__fact">
                         <dt>Оплата</dt>
-                        <dd>Карткою онлайн або при отриманні</dd>
+                        <dd>Карткою онлайн</dd>
                     </div>
                     <div class="buy__fact">
                         <dt>Повернення</dt>
@@ -533,18 +499,18 @@
     </main>
 
     <footer class="footer">
-        <div class="footer__inner">
-            <div class="footer__meta"><span>© 2026</span>
-                <nav class="footer__langs" aria-label="Мова"><span aria-current="page">Українська</span><a href="/ru/" hreflang="ru">Русский</a><a href="/en/" hreflang="en">English</a></nav>
+        <div class="container">
+            <div class="footer__inner">
+                <p class="footer__meta"><span>© 2026</span><span aria-current="page">Українська</span><a href="/ru/" hreflang="ru">Русский</a><a href="/en/" hreflang="en">English</a></p>
+                <p class="footer__contacts"><span>Є питання? Напишіть нам</span><a href="#">Telegram</a><a href="#">Viber</a></p>
             </div>
-            <div class="footer__contacts"><span>Є питання? Напишіть нам</span><a href="#">Telegram</a><a href="#">Viber</a></div>
         </div>
     </footer>
 
     <div class="page__glow"></div>
 
     <div class="sticky-bar">
-        <div class="sticky-bar__info"><span class="sticky-bar__name">Бесперебійник для роутера</span><span class="sticky-bar__price">1 499 ₴</span></div>
+        <div class="sticky-bar__info"><span class="sticky-bar__name">Бесперебійник для роутера</span><span class="sticky-bar__price">1&nbsp;499&nbsp;грн.</span></div>
         <a class="sticky-bar__buy" href="#buy" data-order-open>Купити</a>
     </div>
 
@@ -566,14 +532,8 @@
                     <label class="order__field"><span class="order__label">Ім'я та прізвище</span><input class="order__input" name="name" type="text" required placeholder="Олена Коваленко" autocomplete="name"></label>
                     <label class="order__field"><span class="order__label">Телефон</span><input class="order__input" name="phone" type="tel" required placeholder="+380" autocomplete="tel"></label>
                     <label class="order__field"><span class="order__label">Місто та відділення Нової пошти</span><input class="order__input" name="np" type="text" required placeholder="Київ, відділення №1" autocomplete="address-level2"></label>
-                    <div class="order__field"><span class="order__label" id="order-pay-label">Оплата</span>
-                        <div class="order__pays" role="radiogroup" aria-labelledby="order-pay-label">
-                            <label class="order__pay"><input class="order__pay-input" type="radio" name="payment" value="card" checked><span class="order__pay-text"><span class="order__pay-title">Карткою онлайн</span><span class="order__pay-note">Швидко та безпечно на сайті · Visa, Mastercard, Apple Pay, Google Pay</span></span></label>
-                            <label class="order__pay"><input class="order__pay-input" type="radio" name="payment" value="cod"><span class="order__pay-text"><span class="order__pay-title">При отриманні</span><span class="order__pay-note">Оплата у відділенні Нової пошти</span></span></label>
-                        </div>
-                    </div>
-                    <div class="order__total"><span class="order__total-label">До сплати</span><span class="order__total-value">1 499 ₴</span></div>
-                    <button class="order__submit" type="submit"><span class="order__submit-label">Перейти до оплати</span></button>
+                    <div class="order__total"><span class="order__total-label">До сплати</span><span class="order__total-value">1&nbsp;499&nbsp;грн.</span></div>
+                    <button class="order__submit" type="submit">Перейти до оплати</button>
                     <span class="order__terms">Нова пошта · 1–2 дні · повернення протягом 14 днів</span>
                 </form>
                 <div class="order__success" role="status" tabindex="-1">

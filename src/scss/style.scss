@@ -5,6 +5,7 @@
 @use 'core/fonts';
 @use 'core/base';
 
+@use 'components/container';
 @use 'components/blink';
 @use 'components/reveal';
 @use 'components/eyebrow';
@@ -15,6 +16,7 @@
 @use 'components/order';
 
 @use 'layout/page';
+@use 'layout/main';
 @use 'layout/header';
 @use 'layout/footer';
 @use 'layout/sticky-bar';

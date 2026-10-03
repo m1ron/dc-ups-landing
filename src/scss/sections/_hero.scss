@@ -7,82 +7,81 @@
 }
 
 .hero {
+  padding: 0 0 56px;
   position: relative;
-  padding: 124px $gutter 56px;
   text-align: center;
 
   &__glow {
-    position: absolute;
-    left: 50%;
-    top: 46%;
     width: 900px;
     height: 720px;
-    transform: translate(-50%,-50%);
-    background: radial-gradient(closest-side,rgba($color-accent, 0.22),rgba($color-accent, 0) 70%);
+    position: absolute;
+    left: 50%;
+    top: 40%;
     pointer-events: none;
+    background: radial-gradient(closest-side,rgba($color-accent, 0.22),rgba($color-accent, 0) 70%);
+    transform: translate(-50%,-50%);
   }
 
   &__inner {
-    position: relative;
-    @include container;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     gap: 24px;
   }
 
   &__badge {
-    @include label-caps(11px);
+    padding: 7px 14px 7px 8px;
+    border-radius: $radius-pill;
+    border: 1px solid $color-line-strong;
+    margin: 0;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin: 0;
-    padding: 7px 14px 7px 8px;
-    border-radius: $radius-pill;
-    background: rgba($color-white, 0.05);
-    border: 1px solid $color-line-strong;
     color: $color-text-soft;
+    background: rgba($color-white, 0.05);
+    @include label-caps(11px);
     @include intro(.06s);
 
     // Status dot in front of the label.
     &::before {
-      @include dot(7px, $color-accent);
       content: '';
       margin-left: 6px;
+      @include dot(7px, $color-accent);
     }
   }
 
   &__title {
-    font-family: $font-display;
-    margin: 0;
     max-width: 1000px;
+    margin: 0;
+    font-family: $font-display;
     font-size: clamp(36px,7vw,80px);
+    font-weight: 800;
     line-height: 1;
     letter-spacing: -0.05em;
-    font-weight: 800;
     text-wrap: balance;
     color: $color-text;
     @include intro(.14s);
   }
 
   &__lead {
-    margin: 0;
     max-width: 520px;
+    margin: 0;
     font-size: clamp(17px,2.2vw,20px);
     line-height: 1.5;
-    color: $color-muted;
     text-wrap: pretty;
+    color: $color-muted;
     @include intro(.22s);
   }
 
   &__cta {
+    --blink-duration: 3.9s;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 12px 20px;
     @include intro(.3s);
-    --blink-duration: 3.9s;
   }
 
   &__price {
@@ -91,29 +90,29 @@
     align-items: flex-start;
     gap: 2px;
     text-align: left;
-  }
 
-  &__price-value {
-    font-family: $font-display;
-    font-size: clamp(40px,6vw,52px);
-    font-weight: 800;
-    letter-spacing: -0.045em;
-    line-height: 1;
+    &-value {
+      font-family: $font-display;
+      font-size: clamp(40px,6vw,52px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
   }
 
   &__buy {
-    @include button-pill;
-    gap: 12px;
-    height: 62px;
     min-width: 220px;
+    height: 62px;
     padding: 0 34px;
+    gap: 12px;
     font-size: 19px;
-    box-shadow: 0 10px 40px rgba($color-accent, 0.35);
     transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
+    box-shadow: 0 10px 40px rgba($color-accent, 0.35);
+    @include button-pill;
 
     @include hover {
-      background: $color-accent-hover;
       color: $color-white;
+      background: $color-accent-hover;
       transform: translateY(-2px);
       box-shadow: 0 16px 50px rgba($color-accent, 0.5);
     }
@@ -121,151 +120,156 @@
     &:active {
       transform: scale(0.98);
     }
-  }
 
-  &__buy::after {
-    @include glyph('→');
-    font-weight: 500;
-    font-size: 16px;
+    &::after {
+      font-size: 16px;
+      font-weight: 500;
+      @include glyph('→');
+    }
   }
 
   &__perks {
+    margin-top: -8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px 20px;
     font-size: 13px;
     color: $color-muted;
-    margin-top: -8px;
     @include intro(.38s);
-  }
 
-  &__perks li {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    @include check-mark;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      @include check-mark;
+    }
   }
 
   &__visual {
-    position: relative;
     width: 100%;
     max-width: 900px;
     margin-top: 4px;
+    position: relative;
     @include intro(.46s);
-  }
 
-  &__visual-glow {
-    position: absolute;
-    left: 50%;
-    top: 48%;
-    width: 86%;
-    height: 86%;
-    transform: translate(-50%,-50%);
-    background: radial-gradient(closest-side,rgba($color-accent, 0.16),rgba($color-accent, 0));
-    pointer-events: none;
-  }
+    &-shadow {
+      width: 62%;
+      height: 12%;
+      position: absolute;
+      left: 50%;
+      bottom: 14%;
+      pointer-events: none;
+      background: radial-gradient(closest-side,rgba($color-black, 0.95),rgba($color-black, 0));
+      transform: translateX(-50%);
+    }
 
-  &__visual-shadow {
-    position: absolute;
-    left: 50%;
-    bottom: 14%;
-    width: 62%;
-    height: 12%;
-    transform: translateX(-50%);
-    background: radial-gradient(closest-side,rgba($color-black, 0.95),rgba($color-black, 0));
-    pointer-events: none;
+    &-glow {
+      width: 86%;
+      height: 86%;
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      pointer-events: none;
+      background: radial-gradient(closest-side,rgba($color-accent, 0.16),rgba($color-accent, 0));
+      transform: translate(-50%,-50%);
+    }
   }
 
   &__device {
-    position: relative;
     width: 100%;
     max-width: 700px;
-    margin: 0 auto;
     aspect-ratio: 1400/1170;
+    margin: 0 auto;
+    position: relative;
   }
 
   &__image {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
+    position: absolute;
+    inset: 0;
     object-fit: contain;
     filter: drop-shadow(0 30px 40px rgba($color-black, 0.6));
   }
 
   &__led {
+    width: 4%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
     position: absolute;
     left: 64.2%;
     top: 8.2%;
-    width: 4%;
-    transform: translate(-50%,-50%);
     mix-blend-mode: screen;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background: radial-gradient(circle,rgba(255,80,80,0.9),rgba(255,80,80,0) 70%);
     pointer-events: none;
+    background: radial-gradient(circle,rgba($color-led, 0.9),rgba($color-led, 0) 70%);
     animation: hero-led 2.6s ease-in-out infinite;
+    transform: translate(-50%,-50%);
   }
 
   &__stats {
-    position: relative;
     width: 100%;
     max-width: 1000px;
+    position: relative;
     @include intro(.54s);
-  }
 
-  &__stats-glow {
-    position: absolute;
-    left: -10%;
-    right: -10%;
-    top: 50%;
-    height: 70%;
-    transform: translateY(-50%);
-    background: radial-gradient(60% 50% at 50% 50%,rgba($color-accent, 0.22),rgba($color-accent, 0) 70%);
-    filter: blur(30px);
-    pointer-events: none;
-  }
+    &-glow {
+      height: 70%;
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: 50%;
+      filter: blur(30px);
+      pointer-events: none;
+      background: radial-gradient(60% 50% at 50% 50%,rgba($color-accent, 0.22),rgba($color-accent, 0) 70%);
+      transform: translateY(-50%);
+    }
 
-  &__stats-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(min(100%,120px),1fr));
-    gap: 12px;
-  }
+    &-grid {
+      display: grid;
+      position: relative;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
 
-  &__stats-grid li {
-    position: relative;
-    min-width: 0;
-    border-radius: 24px;
-    padding: 26px clamp(8px,2.5vw,14px) 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-align: center;
-    background: linear-gradient(180deg,rgba(110,140,255,0.16) 0%,rgba(40,50,110,0.10) 45%,rgba(8,8,12,0.55) 100%);
-    border: 1px solid rgba($color-white, 0.10);
-    box-shadow: inset 0 1px 0 rgba($color-white, 0.12),inset 0 0 0 1px rgba($color-accent-soft, 0.04),0 20px 40px -20px rgba($color-black, 0.8);
-    @include backdrop-filter(blur(14px));
-  }
+      @include media-breakpoint-up(sm) {
+        grid-template-columns: repeat(4, 1fr);
+      }
 
-  &__stats-grid strong {
-    font-family: $font-display;
-    font-size: clamp(16px,2.8vw,32px);
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
-    color: #ECEBFA;
-    text-shadow: 0 2px 18px rgba($color-accent-soft, 0.25);
-    white-space: nowrap;
-  }
+      li {
+        min-width: 0;
+        padding: 26px clamp(8px,2.5vw,14px) 24px;
+        border-radius: 24px;
+        border: 1px solid rgba($color-white, 0.10);
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+        // Blue glass: the only place these three stops are used, so they stay literal.
+        background: linear-gradient(180deg,rgba(110,140,255,0.16) 0%,rgba(40,50,110,0.10) 45%,rgba(8,8,12,0.55) 100%);
+        box-shadow: inset 0 1px 0 rgba($color-white, 0.12),inset 0 0 0 1px rgba($color-accent-soft, 0.04),0 20px 40px -20px rgba($color-black, 0.8);
+        @include backdrop-filter(blur(14px));
+      }
 
-  &__stats-grid span {
-    font-size: 14px;
-    line-height: 1.35;
-    color: #D6D8E0;
+      strong {
+        font-family: $font-display;
+        font-size: clamp(16px,2.8vw,32px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        white-space: nowrap;
+        color: $color-text-cool;
+        text-shadow: 0 2px 18px rgba($color-accent-soft, 0.25);
+      }
+
+      span {
+        font-size: 14px;
+        line-height: 1.35;
+        color: $color-text-cool-soft;
+      }
+    }
   }
 }
 
@@ -275,5 +279,6 @@
 
 @keyframes hero-led {
   0%, 100% { opacity: .25; }
+
   50% { opacity: 1; }
 }

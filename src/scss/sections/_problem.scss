@@ -2,23 +2,22 @@
 @use '../core/var' as *;
 
 .problem {
-  padding: $section-top $gutter 20px;
+  padding: $section-top 0 20px;
   @include anchor-offset($section-top);
 
   &__inner {
-    @include container;
     display: flex;
     flex-direction: column;
     gap: 32px;
   }
 
   &__head {
+    max-width: 760px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    max-width: 760px;
-    margin: 0 auto;
     text-align: center;
   }
 
@@ -30,28 +29,30 @@
   }
 
   &__lead {
+    max-width: 600px;
     margin: 0;
+    margin: 0 auto;
     font-size: 17px;
     line-height: 1.55;
-    color: $color-muted;
-    max-width: 600px;
-    margin: 0 auto;
     text-wrap: pretty;
+    color: $color-muted;
   }
 
   &__cards {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 14px;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &__card {
-    flex: 1 1 340px;
+    padding: clamp(22px,3vw,32px);
+    border-radius: $radius-card;
+    display: flex;
     position: relative;
     overflow: hidden;
-    border-radius: $radius-card;
-    padding: clamp(22px,3vw,32px);
-    display: flex;
     flex-direction: column;
     gap: 24px;
 
@@ -64,38 +65,34 @@
       border: 1px solid rgba($color-accent, 0.5);
       background: radial-gradient(600px circle at 100% 0%,rgba($color-accent, 0.16),transparent 60%),$color-surface;
     }
-  }
 
-  &__card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    &-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
   }
 
   &__tag {
-    @include label-caps;
     margin: 0;
+    @include label-caps;
 
-    &--issue {
-      color: $color-danger;
-    }
+    &--issue { color: $color-danger; }
 
-    &--solution {
-      color: $color-accent-soft;
-    }
+    &--solution { color: $color-accent-soft; }
   }
 
   &__status {
+    padding: 5px 10px;
+    border-radius: $radius-pill;
     display: flex;
     align-items: center;
     gap: 6px;
     font-size: 12px;
-    padding: 5px 10px;
-    border-radius: $radius-pill;
 
     &--offline {
-      border: 1px solid rgba(248,113,113,0.35);
+      border: 1px solid rgba($color-danger, 0.35);
       color: $color-danger;
     }
 
@@ -126,10 +123,10 @@
 
     &::before {
       content: '';
-      flex: none;
       width: 10px;
       height: 10px;
       border-radius: 50%;
+      flex: none;
     }
 
     &--muted::before {
@@ -156,31 +153,27 @@
   &__cause {
     font-size: 15px;
     font-weight: 400;
-    letter-spacing: 0;
     line-height: 1.3;
+    letter-spacing: 0;
     color: $color-muted;
   }
 
   &__results {
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-top: 20px;
 
-    &--issue {
-      border-top: 1px solid $color-line;
-    }
+    &--issue { border-top: 1px solid $color-line; }
 
-    &--solution {
-      border-top: 1px solid rgba($color-accent, 0.25);
-    }
+    &--solution { border-top: 1px solid rgba($color-accent, 0.25); }
   }
 
   &__result {
     font-size: clamp(20px,2.4vw,24px);
     font-weight: 600;
-    letter-spacing: -0.02em;
     line-height: 1.3;
+    letter-spacing: -0.02em;
     color: $color-text;
   }
 }

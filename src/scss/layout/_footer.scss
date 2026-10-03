@@ -2,15 +2,13 @@
 @use '../core/var' as *;
 
 .footer {
-  padding: 0 $gutter 132px;
+  padding: 0 0 132px;
 
   &__inner {
-    position: relative;
-    max-width: $container-width;
-    margin: 96px auto 0;
     padding-top: 24px;
     border-top: 1px solid $color-line;
     display: flex;
+    position: relative;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 12px;
@@ -18,59 +16,56 @@
     color: $color-dim;
   }
 
+  // "© 2026", the current language and links to the other ones, each link preceded by a separator dot.
   &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 16px;
-  }
-
-  &__langs {
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
-  }
 
-  &__langs span {
-    color: $color-muted;
-  }
-
-  // Language links, each preceded by a separator dot.
-  &__langs a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-
-    &::before {
-      @include glyph('·');
-      margin-right: 8px;
-      color: #3A3D44;
+    [aria-current] {
+      margin-left: 8px;
+      font-size: 12px;
+      color: $color-muted;
     }
-    color: $color-dim;
-    transition: color $duration-hover $ease-out;
 
-    @include hover {
-      color: $color-text-soft;
+    a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      color: $color-dim;
+      transition: color $duration-hover $ease-out;
+
+      &::before {
+        margin-right: 8px;
+        color: $color-text-faintest;
+        @include glyph('·');
+      }
+
+      @include hover {
+        color: $color-text-soft;
+      }
     }
   }
 
   &__contacts {
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 16px;
-  }
 
-  &__contacts a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-    color: $color-text-soft;
-    transition: color $duration-hover $ease-out;
+    a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      color: $color-text-soft;
+      transition: color $duration-hover $ease-out;
 
-    @include hover {
-      color: $color-white;
+      @include hover {
+        color: $color-white;
+      }
     }
   }
 }

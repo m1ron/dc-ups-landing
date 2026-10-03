@@ -2,24 +2,24 @@
 @use '../core/var' as *;
 
 .sticky-bar {
+  max-width: 520px;
+  padding: 8px 8px 8px 22px;
+  border: 1px solid $color-line-strong;
+  border-radius: $radius-pill;
+  margin: 0 auto;
+  display: flex;
   position: fixed;
   left: 12px;
   right: 12px;
   bottom: 12px;
   z-index: 30;
-  max-width: 520px;
-  margin: 0 auto;
-  background: rgba($color-glass, 0.82);
-  @include backdrop-filter(blur(20px) saturate(1.4));
-  border: 1px solid $color-line-strong;
-  border-radius: $radius-pill;
-  padding: 8px 8px 8px 22px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  transform: translateY(160%);
+  background: rgba($color-glass, 0.82);
   transition: transform $duration-state $ease-out;
+  transform: translateY(160%);
+  @include backdrop-filter(blur(20px) saturate(1.4));
 
   &__info {
     display: flex;
@@ -39,15 +39,15 @@
   }
 
   &__buy {
-    @include button-pill;
-    font-size: 16px;
     height: 48px;
     padding: 0 28px;
+    font-size: 16px;
     transition: transform $duration-hover $ease-out;
+    @include button-pill;
 
     @include hover {
-      background: $color-accent-hover;
       color: $color-white;
+      background: $color-accent-hover;
     }
 
     &:active {

@@ -33,9 +33,9 @@ input,
 optgroup,
 select,
 textarea {
+  margin: 0;
   font-family: inherit;
   font-size: 100%;
-  margin: 0;
 }
 
 button,
@@ -54,23 +54,28 @@ html {
 
 body {
   min-width: 320px;
-  background: $color-black;
-  color: $color-text;
-  font-family: $font-body;
   -webkit-font-smoothing: antialiased;
+  font-family: $font-body;
+  color: $color-text;
+  background: $color-black;
 }
 
 a {
-  color: $color-accent-soft;
   text-decoration: none;
+  color: $color-accent-soft;
+}
+
+img {
+  user-select: none;
 }
 
 // Lists are layout containers here, so markers and default indents are off.
 // They carry role="list" in the markup: Safari stops announcing a list once its markers are removed.
 ul,
-ol {
-  margin: 0;
+ol,
+menu {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
@@ -91,7 +96,9 @@ dd {
   }
 
   *,
+
   *::before,
+
   *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;

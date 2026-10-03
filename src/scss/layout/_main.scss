@@ -1,0 +1,6 @@
+// Page body between the fixed header and the footer: the air above the first section and below the last one.
+@use '../core/var' as *;
+
+.main {
+  padding: $page-top 0 $section-gap;
+}

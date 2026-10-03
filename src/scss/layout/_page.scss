@@ -4,25 +4,25 @@
 .page {
   min-height: 100vh;
   min-height: 100svh;
+  position: relative;
   // Clips the wide glows sideways. This makes the wrapper a scroll container, so nothing inside may stick
   // out below it: an anchor link would first scroll the wrapper by that amount, instantly, and only then
   // scroll the window smoothly, which shows as a jump.
   overflow: hidden;
-  position: relative;
   isolation: isolate;
   background: $color-black;
 
   &__glow {
+    width: 1100px;
+    height: 500px;
     position: absolute;
     left: 50%;
     bottom: 0;
-    width: 1100px;
-    height: 500px;
-    transform: translateX(-50%);
+    z-index: -1;
+    pointer-events: none;
     // The glow is a 1100x700 ellipse whose lower 200px lie below the page; only the part above the page
     // bottom is drawn, so the box ends at the bottom instead of sticking out (see the note on overflow).
     background: radial-gradient(550px 350px at 50% 350px,rgba($color-accent, 0.28),rgba($color-accent, 0) 70%);
-    pointer-events: none;
-    z-index: -1;
+    transform: translateX(-50%);
   }
 }

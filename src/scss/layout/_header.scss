@@ -2,53 +2,54 @@
 @use '../core/var' as *;
 
 .header {
+  padding: 14px 16px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
-  padding: 14px 16px;
   pointer-events: none;
 
   &__bar {
-    @include container;
+    max-width: $container-width; // the pill keeps its own 16px gutters (see .header), so it is not a .container
     height: 52px;
     padding: 0 6px 0 18px;
+    border: 1px solid $color-line;
+    border-radius: $radius-pill;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    pointer-events: auto;
     background: rgba($color-glass, 0.72);
     @include backdrop-filter(blur(20px) saturate(1.4));
-    border: 1px solid $color-line;
-    border-radius: $radius-pill;
-    pointer-events: auto;
   }
 
   &__logo {
-    flex: none;
-    white-space: nowrap;
     display: flex;
+    flex: none;
     align-items: center;
     gap: 10px;
-    color: $color-text;
-    font-weight: 600;
     font-size: 15px;
+    font-weight: 600;
     letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: $color-text;
 
     // Status dot; blinks with the shared "blink" keyframes (components/_blink.scss).
     &::before {
-      @include dot(8px, $color-accent, 12px);
       content: '';
       flex: none;
       animation: blink 3.2s linear infinite;
+      @include dot(8px, $color-accent, 12px);
     }
   }
 
   &__nav {
-    flex: 1;
     min-width: 0;
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
@@ -57,14 +58,14 @@
   // Section links need about 420px of width; below that only the logo and the buy button fit.
   // Section links. Items and links carry no classes of their own, so they are styled by tag.
   &__menu {
-    flex: 1;
     min-width: 0;
+    height: 40px;
     display: none;
+    flex: 1;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
     gap: 0 20px;
-    height: 40px;
     overflow: hidden;
 
     @include media-breakpoint-up(xsl) {
@@ -76,12 +77,12 @@
     }
 
     a {
+      height: 40px;
       display: inline-flex;
       align-items: center;
-      height: 40px;
+      font-size: 14px;
       white-space: nowrap;
       color: $color-muted;
-      font-size: 14px;
       transition: color $duration-hover $ease-out;
 
       @include hover {
@@ -91,22 +92,22 @@
   }
 
   &__buy {
-    display: flex;
-    align-items: center;
-    background: $color-text;
-    color: $color-black;
-    font-weight: 600;
-    font-size: 14px;
     height: 40px;
     padding: 0 16px;
     border-radius: $radius-pill;
+    display: flex;
+    align-items: center;
     flex: none;
+    font-size: 14px;
+    font-weight: 600;
     white-space: nowrap;
+    color: $color-black;
+    background: $color-text;
     transition: transform $duration-hover $ease-out;
 
     @include hover {
-      background: $color-white;
       color: $color-black;
+      background: $color-white;
       transform: translateY(-1px);
     }
 

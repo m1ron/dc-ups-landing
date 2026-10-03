@@ -10,8 +10,8 @@
 
   &::before {
     content: '';
-    @include dot(7px, $color-ok);
     animation: blink var(--blink-duration, 3.2s) linear infinite;
+    @include dot(7px, $color-ok);
   }
 
   &--still::before {

@@ -1,0 +1,9 @@
+// Content column: centres the content of a section and gives it the side gutters. Vertical paddings stay on the
+// section itself, so the two axes are never mixed in one rule.
+@use '../core/var' as *;
+
+.container {
+  max-width: $container-width + 2 * $gutter; // border-box: the gutters sit inside the max-width
+  padding: 0 $gutter;
+  margin: 0 auto;
+}

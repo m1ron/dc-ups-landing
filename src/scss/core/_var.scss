@@ -17,6 +17,14 @@ $color-warm: #E8B86E;
 $color-surface: #0B0B0D;
 $color-surface-raised: #141418;
 $color-surface-sunken: #0E0E10;
+$color-surface-deep: #070708; // backdrop behind the product photos
+$color-text-faint: #4A4D54; // the muted half of a heading
+$color-text-faintest: #3A3D44; // separators in the footer
+$color-text-cool: #ECEBFA; // values in the hero tiles: a cooler white on the blue glass
+$color-text-cool-soft: #D6D8E0; // labels in the hero tiles
+$color-led: #FF5050; // the red indicator on the device photo
+$color-bulb: #F0C88C; // warm glow of the lit bulb in the demo
+$color-halo: #5B93FF; // ring around the demo steps while on battery
 
 $font-body: Inter, system-ui, sans-serif; // everything except display text; set once on body
 $font-display: Manrope, Inter, sans-serif;
@@ -33,8 +41,9 @@ $radius-card: 28px;
 $radius-card-lg: 32px; // demo, buy and order cards
 $radius-field: 14px; // inputs and payment options
 
-$container-width: 1200px;
-$gutter: 20px; // side padding of every section
+$container-width: 1200px; // content column (.container), gutters excluded
+$gutter: 20px; // side padding of .container
+$page-top: 124px; // where the first section starts: the fixed header plus air
 $section-top: 72px; // top padding of sections that start with a heading on the page background
 $section-gap: 96px; // bottom padding of most sections
 
@@ -72,16 +81,10 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
   backdrop-filter: $value;
 }
 
-// Centred content column.
-@mixin container {
-  max-width: $container-width;
-  margin: 0 auto;
-}
-
 // Small uppercase label (eyebrows, tags, field captions).
 @mixin label-caps($size: 12px, $tracking: 0.1em) {
-  font-weight: 500;
   font-size: $size;
+  font-weight: 500;
   letter-spacing: $tracking;
   text-transform: uppercase;
 }
@@ -97,13 +100,13 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
 
 // Pill-shaped action button; size, shadow and hover lift stay with the block.
 @mixin button-pill($bg: $color-accent, $fg: $color-white) {
+  border-radius: $radius-pill;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: $radius-pill;
-  background: $bg;
-  color: $fg;
   font-weight: 600;
+  color: $fg;
+  background: $bg;
 }
 
 // Decorative glyph in a pseudo-element: the second `content` (alt text "") hides it from screen readers
@@ -116,9 +119,9 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
 // Green check mark in front of a list line.
 @mixin check-mark {
   &::before {
-    @include glyph('✓');
-    color: $color-ok;
     font-weight: 500;
+    color: $color-ok;
+    @include glyph('✓');
   }
 }
 
