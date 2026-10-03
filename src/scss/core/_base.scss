@@ -48,13 +48,17 @@ button,
 // --- Page defaults
 
 html {
+  // No grey/blue flash on tap in mobile Chrome and Safari: the blocks show their own :active looks.
+  -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
   background: $color-black;
 }
 
 body {
   min-width: 320px;
+  // Grayscale smoothing on macOS (WebKit/Blink and Firefox): light text on the dark background stays thin and even.
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: $font-body;
   color: $color-text;
   background: $color-black;

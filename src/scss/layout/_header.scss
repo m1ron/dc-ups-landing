@@ -83,7 +83,7 @@
       font-size: 14px;
       white-space: nowrap;
       color: $color-muted;
-      transition: color $duration-hover $ease-out;
+      transition: color $duration $ease-out;
 
       @include hover {
         color: $color-text;
@@ -103,7 +103,7 @@
     white-space: nowrap;
     color: $color-black;
     background: $color-text;
-    transition: transform $duration-hover $ease-out;
+    transition: transform $duration $ease-out,background $duration $ease-out;
 
     @include hover {
       color: $color-black;

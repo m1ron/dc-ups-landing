@@ -110,7 +110,7 @@
     font-weight: 500;
     color: $color-text-soft;
     background: transparent;
-    transition: background $duration-demo ease-in-out,border-color $duration-demo ease-in-out,color $duration-demo ease-in-out,transform $duration-hover $ease-out;
+    transition: background $duration-demo ease-in-out,border-color $duration-demo ease-in-out,color $duration-demo ease-in-out,transform $duration $ease-out;
 
     &:active {
       transform: scale(0.95);

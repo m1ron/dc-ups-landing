@@ -42,7 +42,7 @@
     height: 48px;
     padding: 0 28px;
     font-size: 16px;
-    transition: transform $duration-hover $ease-out;
+    transition: transform $duration $ease-out,background $duration $ease-out;
     @include button-pill;
 
     @include hover {

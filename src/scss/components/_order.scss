@@ -36,25 +36,24 @@
     }
   }
 
+  // A cross drawn by two bars (see the bars mixin), so it doesn't depend on a glyph or a font weight.
   &__close {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     border: 0;
-    display: flex;
     position: absolute;
     top: 14px;
     right: 14px;
     z-index: 2;
     cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 1;
     color: $color-text;
     background: rgba($color-white, 0.08);
-    transition: background $duration-hover $ease-out,transform $duration-hover $ease-out;
+    transition: background $duration $ease-out,transform $duration $ease-out;
+    @include bars;
+
+    &::before { transform: rotate(45deg); }
+    &::after { transform: rotate(-45deg); }
 
     @include hover {
       background: rgba($color-white, 0.16);
@@ -135,7 +134,7 @@
     font-size: 16px;
     color: $color-text;
     background: $color-surface-raised;
-    transition: border-color $duration-hover $ease-out,box-shadow $duration-hover $ease-out;
+    transition: border-color $duration $ease-out,box-shadow $duration $ease-out;
 
     &:focus {
       border-color: $color-accent;
@@ -170,14 +169,14 @@
     gap: 10px;
     cursor: pointer;
     font-size: 18px;
-    transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
+    transition: transform $duration $ease-out,box-shadow $duration $ease-out,background $duration $ease-out;
     box-shadow: 0 10px 50px rgba($color-accent, 0.4);
     @include button-pill;
 
     @include hover {
       background: $color-accent-hover;
-      transform: translateY(-2px);
-      box-shadow: 0 18px 60px rgba($color-accent, 0.55);
+      transform: translateY(-1px);
+      box-shadow: 0 13px 54px rgba($color-accent, 0.46);
     }
 
     &:active {

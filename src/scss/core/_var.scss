@@ -9,7 +9,7 @@ $color-text-soft: #C7CAD1;
 $color-muted: #8A8F98;
 $color-dim: #6B6F78;
 $color-accent: #3B7BFF;
-$color-accent-hover: #4D88FF;
+$color-accent-hover: #2F6CEE; // a shade darker: the lift and the glow already add light
 $color-accent-soft: #8FB0F7;
 $color-ok: #4ADE80;
 $color-danger: #F87171;
@@ -47,7 +47,7 @@ $page-top: 124px; // where the first section starts: the fixed header plus air
 $section-top: 72px; // top padding of sections that start with a heading on the page background
 $section-gap: 96px; // bottom padding of most sections
 
-$duration-hover: .2s;
+$duration: .3s; // hover looks: colour, lift, glow
 $duration-state: .35s; // tabs, accordion, dialog, payment choice
 $duration-demo: .5s; // demo cross-fades
 $duration-reveal: .9s;
@@ -114,6 +114,20 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
 @mixin glyph($char) {
   content: $char;
   content: $char / '';
+}
+
+// Two centred bars drawn by the pseudo-elements of a positioned box; rotate them into a plus, a cross or a minus.
+@mixin bars($width: 14px, $height: 2px) {
+  &::before,
+  &::after {
+    content: '';
+    width: $width;
+    height: $height;
+    margin: auto;
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+  }
 }
 
 // Green check mark in front of a list line.

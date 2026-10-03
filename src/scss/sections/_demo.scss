@@ -14,12 +14,11 @@
   --demo-on-op: 0;
   --demo-off-op: 1;
   --demo-grid-spark: 0;
+  --demo-glow-op: 1;
   padding: $section-top 0 $section-gap;
   @include anchor-offset($section-top);
 
   --demo-card-border: #{rgba($color-accent, 0.45)};
-
-  --demo-glow: #{rgba($color-accent, 0.34)};
 
   --demo-thumb-bg: #{$color-accent};
 
@@ -57,9 +56,10 @@
     left: 50%;
     top: -360px;
     pointer-events: none;
-    background: radial-gradient(closest-side,var(--demo-glow),rgba($color-black, 0));
-    transition: background $duration-demo ease-in-out;
+    background: radial-gradient(closest-side,rgba($color-accent, 0.34),rgba($color-black, 0));
+    transition: opacity $duration-demo ease-in-out;
     transform: translateX(-50%);
+    opacity: var(--demo-glow-op);
   }
 
   &__head {
@@ -138,7 +138,6 @@
 
   // Steps: blue while running on the battery (lit one after another), warm on mains.
   &__step {
-    --demo-step-delay: 0ms;
     padding: 16px 16px 18px;
     border-radius: 20px;
     border: 1px solid var(--demo-step-border);
@@ -148,7 +147,6 @@
     flex-direction: column;
     gap: 12px;
     transition: border-color $duration-demo ease-in-out,box-shadow $duration-demo ease-in-out;
-    transition-delay: var(--demo-step-delay);
     box-shadow: var(--demo-step-shadow);
 
     --demo-step-border: #{rgba($color-accent, 0.65)};
@@ -167,12 +165,10 @@
     }
 
     &--ups {
-      --demo-step-delay: 150ms;
       background: $color-surface-raised;
     }
 
     &--router {
-      --demo-step-delay: 300ms;
       background: $color-surface-sunken;
     }
   }
@@ -231,7 +227,6 @@
       letter-spacing: 0.1em;
       color: var(--demo-step-color);
       transition: color $duration-demo ease-in-out;
-      transition-delay: var(--demo-step-delay);
       @include glyph(counter(step, decimal-leading-zero));
     }
   }
@@ -249,14 +244,12 @@
   &__when-on {
     grid-area: 1/1;
     transition: opacity $duration-demo ease-in-out;
-    transition-delay: var(--demo-step-delay);
     opacity: var(--demo-on-op);
   }
 
   &__when-off {
     grid-area: 1/1;
     transition: opacity $duration-demo ease-in-out;
-    transition-delay: var(--demo-step-delay);
     opacity: var(--demo-off-op);
   }
 
@@ -304,7 +297,7 @@
     &-live {
       position: absolute;
       inset: -3px 0;
-      transition: opacity $duration-state $ease-out;
+      transition: opacity $duration-demo ease-in-out;
       opacity: var(--demo-grid-spark);
     }
   }
@@ -372,7 +365,6 @@
     inset: -1px;
     pointer-events: none;
     transition: opacity $duration-demo ease-in-out;
-    transition-delay: var(--demo-step-delay);
     opacity: var(--demo-breathe-op);
 
     &-ring {
@@ -413,10 +405,9 @@
     --demo-on-op: 1;
     --demo-off-op: 0;
     --demo-grid-spark: 1;
+    --demo-glow-op: 0;
 
     --demo-card-border: #{rgba($color-warm, 0.12)};
-
-    --demo-glow: #{rgba($color-warm, 0.04)};
 
     --demo-thumb-bg: #{$color-text};
 
@@ -428,8 +419,6 @@
   }
 
   &.is-on &__step {
-    --demo-step-delay: 0ms;
-
     --demo-step-border: #{rgba($color-warm, 0.18)};
 
     --demo-step-shadow: 0 0 40px -12px #{rgba($color-warm, 0.10)};

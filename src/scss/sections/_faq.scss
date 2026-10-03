@@ -73,18 +73,10 @@
       position: relative;
       flex: none;
       background: rgba($color-white, 0.08);
+      @include bars;
 
       &::before,
-      &::after {
-        content: '';
-        width: 14px;
-        height: 2px;
-        margin: auto;
-        position: absolute;
-        inset: 0;
-        background: currentColor;
-        transition: transform $duration-state $ease-out;
-      }
+      &::after { transition: transform $duration-state $ease-out; }
 
       &::after { transform: rotate(90deg); }
     }

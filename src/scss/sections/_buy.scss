@@ -169,15 +169,15 @@
     height: 64px;
     gap: 10px;
     font-size: 19px;
-    transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
+    transition: transform $duration $ease-out,box-shadow $duration $ease-out,background $duration $ease-out;
     box-shadow: 0 10px 50px rgba($color-accent, 0.4);
     @include button-pill;
 
     @include hover {
       color: $color-white;
       background: $color-accent-hover;
-      transform: translateY(-2px);
-      box-shadow: 0 18px 60px rgba($color-accent, 0.55);
+      transform: translateY(-1px);
+      box-shadow: 0 13px 54px rgba($color-accent, 0.46);
     }
 
     &:active {
