@@ -1,6 +1,7 @@
-// Entry stylesheet for the landing: core → shared blocks → layout → page sections.
+// Entry stylesheet for the landing: core → components → layout → sections.
+// Components come before sections so a section can adjust a shared block it mixes in (e.g. `title specs__title`).
 
-@use 'core/normalize';
+@use 'core/var'; // tokens, mixins and breakpoints: no CSS of its own, every partial loads it as well
 @use 'core/fonts';
 @use 'core/base';
 @use 'components/blink';
@@ -10,16 +11,16 @@
 @use 'components/stock';
 @use 'components/check';
 @use 'components/sweep';
+@use 'components/feature';
+@use 'components/order';
 @use 'layout/page';
 @use 'layout/header';
 @use 'layout/footer';
 @use 'layout/sticky-bar';
-@use 'components/hero';
-@use 'components/problem';
-@use 'components/demo';
-@use 'components/usecase';
-@use 'components/feature';
-@use 'components/specs';
-@use 'components/faq';
-@use 'components/buy';
-@use 'components/order';
+@use 'sections/hero';
+@use 'sections/problem';
+@use 'sections/demo';
+@use 'sections/usecase';
+@use 'sections/specs';
+@use 'sections/faq';
+@use 'sections/buy';

@@ -1,4 +1,6 @@
-// Design tokens (colours, fonts, easings) and shared mixins.
+// Design tokens (colours, fonts, easings) and shared mixins. Forwards the breakpoint map and media
+// mixins too, so a partial gets everything with one `@use '../core/var' as *;`.
+@forward 'breakpoints';
 
 $color-black: #000;
 $color-white: #fff;
@@ -16,26 +18,11 @@ $color-surface: #0B0B0D;
 $color-surface-raised: #141418;
 $color-surface-sunken: #0E0E10;
 
-$font-body: Inter, system-ui, sans-serif;
-$font-ui: Inter, sans-serif;
+$font-body: Inter, system-ui, sans-serif; // everything except display text; set once on body
 $font-display: Manrope, Inter, sans-serif;
 
 $ease-out: cubic-bezier(.2, .8, .2, 1); // entrances, hovers
 $ease-in-out: cubic-bezier(.65, 0, .35, 1); // sliding thumbs and tracks
-
-// Breakpoints, mobile first: base styles are for phones, each step adds the layout for wider screens.
-// Thresholds follow where the layout needs to change, not device models; phones (360–440px) are
-// handled by fluid sizes (clamp, wrapping), so there is only one phone step.
-$grid-breakpoints: (
-  xs: 0, // phones: the base styles
-  xsl: 420px, // wide phones: the header has room for the section links
-  sm: 540px, // phones in landscape, small tablets
-  md: 768px, // tablets in portrait: the demo steps sit in a row
-  lg: 992px, // tablets in landscape, small laptops
-  xl: 1340px, // laptops (1470–1512px MacBooks land here)
-  xxl: 1600px, // desktop monitors
-  xxxl: 1900px, // Full HD and wider
-) !default;
 
 $color-glass: #121214; // translucent bars (header, sticky bar, photo tag), always used with an alpha
 $color-line: rgba($color-white, 0.08); // hairline borders and dividers
@@ -93,7 +80,6 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
 
 // Small uppercase label (eyebrows, tags, field captions).
 @mixin label-caps($size: 12px, $tracking: 0.1em) {
-  font-family: $font-ui;
   font-weight: 500;
   font-size: $size;
   letter-spacing: $tracking;

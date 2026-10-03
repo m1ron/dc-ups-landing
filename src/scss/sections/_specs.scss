@@ -65,7 +65,6 @@
     border: 0;
     background: transparent;
     cursor: pointer;
-    font-family: inherit;
     font-size: clamp(11px,3.2vw,12px);
     font-weight: 600;
     height: 40px;
@@ -192,7 +191,6 @@
   }
 
   &__box-num {
-    font-family: $font-ui;
     font-weight: 500;
     font-size: 12px;
     color: $color-accent;
@@ -224,7 +222,6 @@
   }
 
   &__row-value {
-    font-family: $font-ui;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.5;

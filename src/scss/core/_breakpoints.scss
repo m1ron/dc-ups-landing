@@ -1,11 +1,25 @@
-// Bootstrap's breakpoint helpers: media-breakpoint-up/down/between/only over $grid-breakpoints.
+// Breakpoint map and Bootstrap's media helpers (media-breakpoint-up/down/between/only). Loaded through _var.
 
 @use 'sass:list';
 @use 'sass:map';
-@use 'var';
+
+// Breakpoints, mobile first: base styles are for phones, each step adds the layout for wider screens.
+// Thresholds follow where the layout needs to change, not device models; phones (360–440px) are
+// handled by fluid sizes (clamp, wrapping), so there is only one phone step.
+$grid-breakpoints: (
+  xs: 0, // phones: the base styles
+  xsl: 420px, // wide phones: the header has room for the section links
+  sm: 540px, // phones in landscape, small tablets
+  md: 768px, // tablets in portrait: the demo steps sit in a row
+  lg: 992px, // tablets in landscape, small laptops
+  xl: 1340px, // laptops (1470–1512px MacBooks land here)
+  xxl: 1600px, // desktop monitors
+  xxxl: 1900px, // Full HD and wider
+) !default;
+
 
 // Next breakpoint name, or null for the last
-@function breakpoint-next($name, $breakpoints: var.$grid-breakpoints, $breakpoint-names: map.keys($breakpoints)) {
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map.keys($breakpoints)) {
   $n: list.index($breakpoint-names, $name);
   @if not $n {
     @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
@@ -17,7 +31,7 @@
 }
 
 // Min width, null for the first breakpoint
-@function breakpoint-min($name, $breakpoints: var.$grid-breakpoints) {
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
   $min: map.get($breakpoints, $name);
   @if $min != 0 {
     @return $min;
@@ -26,7 +40,7 @@
 }
 
 // Max width minus .02px (fractional viewports, Safari rounding)
-@function breakpoint-max($name, $breakpoints: var.$grid-breakpoints) {
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $max: map.get($breakpoints, $name);
   @if $max and $max > 0 {
     @return $max - .02;
@@ -35,7 +49,7 @@
 }
 
 // "" for the first breakpoint, else "-name"
-@function breakpoint-infix($name, $breakpoints: var.$grid-breakpoints) {
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
   @if breakpoint-min($name, $breakpoints) == null {
     @return "";
   }
@@ -43,7 +57,7 @@
 }
 
 // Breakpoint and wider
-@mixin media-breakpoint-up($name, $breakpoints: var.$grid-breakpoints) {
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   @if $min {
     @media (min-width: $min) {
@@ -55,7 +69,7 @@
 }
 
 // Narrower than the breakpoint
-@mixin media-breakpoint-down($name, $breakpoints: var.$grid-breakpoints) {
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
   $max: breakpoint-max($name, $breakpoints);
   @if $max {
     @media (max-width: $max) {
@@ -67,7 +81,7 @@
 }
 
 // Between two breakpoints
-@mixin media-breakpoint-between($lower, $upper, $breakpoints: var.$grid-breakpoints) {
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($lower, $breakpoints);
   $max: breakpoint-max($upper, $breakpoints);
 
@@ -87,7 +101,7 @@
 }
 
 // This breakpoint only
-@mixin media-breakpoint-only($name, $breakpoints: var.$grid-breakpoints) {
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
   $min:  breakpoint-min($name, $breakpoints);
   $next: breakpoint-next($name, $breakpoints);
   $max:  breakpoint-max($next, $breakpoints);

@@ -132,7 +132,6 @@
     border: 1px solid rgba($color-white, 0.12);
     background: $color-surface-raised;
     color: $color-text;
-    font-family: inherit;
     font-size: 16px;
     outline: none;
     transition: border-color $duration-hover $ease-out,box-shadow $duration-hover $ease-out;
@@ -159,7 +158,6 @@
     padding: 13px 14px;
     border-radius: $radius-field;
     cursor: pointer;
-    font-family: inherit;
     color: $color-text;
     border: 1px solid $color-line-strong;
     background: transparent;
@@ -245,7 +243,6 @@
     height: 62px;
     border: 0;
     cursor: pointer;
-    font-family: inherit;
     font-size: 18px;
     box-shadow: 0 10px 50px rgba($color-accent, 0.4);
     transition: transform $duration-hover $ease-out,box-shadow $duration-hover $ease-out,background $duration-hover $ease-out;
@@ -262,7 +259,6 @@
   }
 
   &__submit-arrow {
-    font-family: $font-ui;
     font-weight: 500;
     font-size: 16px;
   }
@@ -318,7 +314,6 @@
     border: 1px solid rgba($color-white, 0.16);
     background: transparent;
     color: $color-text;
-    font-family: inherit;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;

@@ -34,15 +34,17 @@ vite.config.js       build output folders
 public/              files that keep their names (og-image.webp)
 src/
   scss/
-    style.scss       entry: @use in order core → shared blocks → layout → sections
-    core/            _var (tokens, mixins), _breakpoints, _normalize, _fonts, _base
-    layout/          _page, _header, _footer, _sticky-bar
-    components/      one partial per block (_hero, _demo, _faq, _order, …)
+    style.scss       entry: @use in order core → components → layout → sections
+    core/            _var (tokens, mixins), _breakpoints, _fonts, _base (normalize + element defaults)
+    components/      reusable blocks: _eyebrow, _title, _stock, _check, _sweep, _blink, _reveal, _feature, _order
+    layout/          page chrome: _page, _header, _footer, _sticky-bar
+    sections/        one partial per section of this landing: _hero, _problem, _demo, _usecase, _specs, _faq, _buy
   js/
     main.js          entry: imports and init order
     core/            env.js (media queries), in-view.js (viewport watcher), keys.js (arrow-key navigation)
+    components/      reveal.js, feature.js, order.js
     layout/          sticky-bar.js
-    components/      one module per block, same name as its SCSS partial
+    sections/        demo.js, specs.js, faq.js — same names as the SCSS partials
   fonts/
   img/
 ```
@@ -51,8 +53,9 @@ src/
 
 - Styles and scripts never hook onto IDs, only onto classes. IDs in the markup exist for anchor links (`#demo`, `#buy`) and ARIA references (`aria-controls`, `aria-labelledby`).
 - BEM everywhere, no inline styles. In SCSS a block is one file with elements written as `&__element`. State classes are `is-*` and are set only by JS.
+- Components are blocks that could appear on any landing and don't know where they stand; sections are the pieces of this page with its copy and order. A new landing gets its own entry with the shared core, components and layout plus its own sections.
 - Design tokens are SCSS variables in `core/_var.scss`: colours (alphas are written as `rgba($color-accent, 0.5)`), hairlines (`$color-line`), radii, the content column, section paddings, durations and easings. Repeated patterns are mixins there too: `container`, `label-caps`, `dot`, `button-pill`, `card`, `hover`, `backdrop-filter`, `anchor-offset`. Values that change at runtime (demo state, blink duration, pointer spotlight, active tab) are CSS custom properties named `--block-thing`.
-- Breakpoints are the Bootstrap-style `$grid-breakpoints` map in `core/_var.scss` (xs 0, xsl 420, sm 540, md 768, lg 992, xl 1340, xxl 1600, xxxl 1900) with `media-breakpoint-up/down/between/only` in `core/_breakpoints.scss`. Thresholds follow the layout, not device models. In use so far: `xsl` (header shows the section links) and `md` (demo steps sit in a row).
+- Breakpoints are the Bootstrap-style `$grid-breakpoints` map (xs 0, xsl 420, sm 540, md 768, lg 992, xl 1340, xxl 1600, xxxl 1900) with `media-breakpoint-up/down/between/only`, both in `core/_breakpoints.scss`. `_var` forwards them, so `@use '../core/var' as *;` is the only import a partial needs. Thresholds follow the layout, not device models. In use so far: `xsl` (header shows the section links) and `md` (demo steps sit in a row).
 - Sections that anchor links scroll to include the `anchor-offset` mixin, so their content stops 24px below the fixed header. A new section with an `id` needs it too (pass the section's own top padding).
 - Use the `hover` mixin for hover looks (hover-capable devices only, same look on keyboard focus) and the `backdrop-filter` mixin for blurred backdrops: the CSS minifier drops the standard property if the prefixed one is written after it.
 - The header menu (`.header__menu`) is the one place styled by tag: its `li` and `a` carry no classes.

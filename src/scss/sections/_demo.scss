@@ -1,6 +1,5 @@
 // "How it works" demo: socket → UPS → router flow with a power switch. demo.js toggles .is-on.
 @use '../core/var' as *;
-@use '../core/breakpoints' as *;
 
 // State. Default = power cut (UPS feeds the router); .is-on = mains power is on.
 // Phones stack the three steps; from 720px they sit in a row.
@@ -111,7 +110,6 @@
     position: relative;
     border: 0;
     cursor: pointer;
-    font-family: inherit;
     font-size: 16px;
     font-weight: 600;
     height: 52px;
