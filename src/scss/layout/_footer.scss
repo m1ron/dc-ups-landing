@@ -33,18 +33,21 @@
     font-size: 12px;
   }
 
-  &__lang-current {
+  &__langs span {
     color: $color-muted;
   }
 
-  &__sep {
-    color: #3A3D44;
-  }
-
-  &__lang {
+  // Language links, each preceded by a separator dot.
+  &__langs a {
     display: inline-flex;
     align-items: center;
     min-height: 40px;
+
+    &::before {
+      @include glyph('·');
+      margin-right: 8px;
+      color: #3A3D44;
+    }
     color: $color-dim;
     transition: color $duration-hover $ease-out;
 
@@ -59,7 +62,7 @@
     gap: 16px;
   }
 
-  &__contact {
+  &__contacts a {
     display: inline-flex;
     align-items: center;
     min-height: 40px;

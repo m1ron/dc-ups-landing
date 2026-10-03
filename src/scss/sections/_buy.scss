@@ -108,7 +108,8 @@
     border-bottom: 1px solid $color-line;
   }
 
-  &__perk {
+  &__perks li {
+    @include check-mark;
     display: flex;
     gap: 10px;
     font-size: 14px;
@@ -142,20 +143,22 @@
     &--plain {
       padding: 10px 14px;
     }
-  }
 
-  &__method-mark {
-    flex: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
+    // Radio-like mark: filled for the primary method, empty for the other.
+    &::before {
+      content: '';
+      flex: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
 
-    &--on {
+    &--card::before {
       border: 5px solid $color-accent;
       background: $color-white;
     }
 
-    &--off {
+    &--plain::before {
       border: 1.5px solid rgba($color-white, 0.28);
     }
   }
@@ -222,12 +225,12 @@
     gap: 6px;
   }
 
-  &__fact-label {
+  &__fact dt {
     @include label-caps(11px);
     color: $color-accent-soft;
   }
 
-  &__fact-value {
+  &__fact dd {
     font-size: 15px;
     line-height: 1.4;
   }

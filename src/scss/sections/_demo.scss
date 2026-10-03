@@ -127,6 +127,7 @@
   }
 
   &__flow {
+    counter-reset: step;
     position: relative;
     width: 100%;
     display: grid;
@@ -136,6 +137,7 @@
 
   // Steps: blue while running on the battery (lit one after another), warm on mains.
   &__step {
+    counter-increment: step;
     position: relative;
     border-radius: 20px;
     padding: 16px 16px 18px;
@@ -217,7 +219,9 @@
     gap: 6px;
   }
 
-  &__num {
+  // "01", "02", "03" from the step counter.
+  &__info::before {
+    @include glyph(counter(step, decimal-leading-zero));
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.1em;

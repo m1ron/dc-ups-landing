@@ -106,6 +106,22 @@ $anchor-gap: 24px; // air between the header and the content an anchor link scro
   font-weight: 600;
 }
 
+// Decorative glyph in a pseudo-element: the second `content` (alt text "") hides it from screen readers
+// in browsers that know the syntax, the first one is the fallback for those that don't.
+@mixin glyph($char) {
+  content: $char;
+  content: $char / '';
+}
+
+// Green check mark in front of a list line.
+@mixin check-mark {
+  &::before {
+    @include glyph('✓');
+    color: $color-ok;
+    font-weight: 500;
+  }
+}
+
 // Dark rounded card with a hairline border.
 @mixin card($radius: $radius-card, $line: $color-line) {
   border-radius: $radius;

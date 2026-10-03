@@ -73,7 +73,9 @@
     line-height: 1.35;
   }
 
-  &__icon {
+  // The "+" at the right of a question; turns into a cross when the answer is open.
+  &__question::after {
+    @include glyph('+');
     flex: none;
     width: 40px;
     height: 40px;
@@ -89,7 +91,7 @@
     transition: transform $duration-state $ease-out;
   }
 
-  &__item.is-open &__icon {
+  &__item.is-open &__question::after {
     transform: rotate(45deg);
   }
 

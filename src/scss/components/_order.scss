@@ -184,7 +184,8 @@
     pointer-events: none;
   }
 
-  &__pay-mark {
+  &__pay::before {
+    content: '';
     flex: none;
     width: 18px;
     height: 18px;
@@ -195,7 +196,7 @@
     transition: border $duration-state $ease-out,background $duration-state $ease-out;
   }
 
-  &__pay:has(.order__pay-input:checked) &__pay-mark {
+  &__pay:has(.order__pay-input:checked)::before {
     border: 5px solid $color-accent;
     background: $color-white;
   }
@@ -258,7 +259,8 @@
     }
   }
 
-  &__submit-arrow {
+  &__submit::after {
+    @include glyph('→');
     font-weight: 500;
     font-size: 16px;
   }
@@ -279,7 +281,8 @@
     min-height: 320px;
   }
 
-  &__success-icon {
+  &__success::before {
+    @include glyph('✓');
     width: 56px;
     height: 56px;
     border-radius: 50%;

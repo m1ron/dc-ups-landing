@@ -104,7 +104,7 @@
     flex-direction: column;
   }
 
-  &__item {
+  &__list li {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -112,7 +112,7 @@
     padding: 13px 0;
   }
 
-  &__item-name {
+  &__list strong {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -120,12 +120,13 @@
     font-weight: 600;
   }
 
-  &__item-dot {
+  &__list strong::before {
+    content: '';
     @include dot(6px, $color-ok);
     flex: none;
   }
 
-  &__item-note {
+  &__list li > span {
     font-size: 13px;
     color: $color-muted;
     text-align: right;
@@ -151,6 +152,7 @@
   &__summary-line {
     display: flex;
     gap: 10px;
+    @include check-mark;
   }
 
   &__features {
@@ -159,7 +161,7 @@
     gap: 14px;
   }
 
-  &__item + &__item {
+  &__list li + li {
     border-top: 1px solid rgba($color-white, 0.07);
   }
 }

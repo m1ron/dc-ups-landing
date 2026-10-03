@@ -103,44 +103,51 @@
       border: 1px solid rgba($color-ok, 0.35);
       color: $color-ok;
     }
+
+    // Status dot in the chip's colour; it blinks only while "online".
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    &--online::before {
+      animation: blink 4.6s linear infinite;
+    }
   }
 
-  &__status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    --blink-duration: 4.6s;
-  }
-
+  // A line of the card: bullet first, text after. The modifier sets the bullet colour.
   &__line {
     display: flex;
     align-items: center;
     gap: 14px;
-  }
 
-  &__bullet {
-    flex: none;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    &::before {
+      content: '';
+      flex: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
 
-    &--muted {
+    &--muted::before {
       background: $color-dim;
       box-shadow: 0 0 0 4px rgba($color-white, 0.03);
     }
 
-    &--bad {
+    &--bad::before {
       background: $color-danger;
       box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-danger;
     }
 
-    &--ups {
+    &--ups::before {
       background: $color-accent;
       box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-accent;
     }
 
-    &--ok {
+    &--ok::before {
       background: $color-ok;
       box-shadow: 0 0 0 4px rgba($color-white, 0.03),0 0 10px $color-ok;
     }

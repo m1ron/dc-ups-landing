@@ -33,6 +33,12 @@
       font-size: 13px;
       border: 1px solid rgba($color-ok, 0.35);
       color: $color-ok;
+
+      &::before {
+        content: '';
+        @include dot(7px, $color-ok);
+        animation: blink 8.8s linear infinite;
+      }
     }
   }
 
@@ -160,8 +166,4 @@
     margin-left: 4px;
   }
 
-  &__chip-dot {
-    @include dot(7px, $color-ok);
-    --blink-duration: 8.8s;
-  }
 }

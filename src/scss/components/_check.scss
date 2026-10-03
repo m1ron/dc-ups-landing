@@ -1,7 +1,0 @@
-// Green check mark in front of a list line.
-@use '../core/var' as *;
-
-.check {
-  color: $color-ok;
-  font-weight: 500;
-}

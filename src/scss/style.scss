@@ -4,19 +4,21 @@
 @use 'core/var'; // tokens, mixins and breakpoints: no CSS of its own, every partial loads it as well
 @use 'core/fonts';
 @use 'core/base';
+
 @use 'components/blink';
 @use 'components/reveal';
 @use 'components/eyebrow';
 @use 'components/title';
 @use 'components/stock';
-@use 'components/check';
 @use 'components/sweep';
 @use 'components/feature';
 @use 'components/order';
+
 @use 'layout/page';
 @use 'layout/header';
 @use 'layout/footer';
 @use 'layout/sticky-bar';
+
 @use 'sections/hero';
 @use 'sections/problem';
 @use 'sections/demo';

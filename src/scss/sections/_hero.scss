@@ -123,7 +123,8 @@
     }
   }
 
-  &__buy-arrow {
+  &__buy::after {
+    @include glyph('→');
     font-weight: 500;
     font-size: 16px;
   }
@@ -139,10 +140,11 @@
     @include intro(.38s);
   }
 
-  &__perk {
+  &__perks li {
     display: flex;
     align-items: center;
     gap: 6px;
+    @include check-mark;
   }
 
   &__visual {
@@ -232,7 +234,7 @@
     gap: 12px;
   }
 
-  &__stat {
+  &__stats-grid li {
     position: relative;
     min-width: 0;
     border-radius: 24px;
@@ -249,7 +251,7 @@
     @include backdrop-filter(blur(14px));
   }
 
-  &__stat-value {
+  &__stats-grid strong {
     font-family: $font-display;
     font-size: clamp(16px,2.8vw,32px);
     font-weight: 800;
@@ -260,7 +262,7 @@
     white-space: nowrap;
   }
 
-  &__stat-label {
+  &__stats-grid span {
     font-size: 14px;
     line-height: 1.35;
     color: #D6D8E0;

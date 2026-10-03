@@ -1,4 +1,4 @@
-// "In stock" status line with a green dot.
+// "In stock" status line with a green dot that blinks (set --blink-duration on a parent to change the rhythm).
 @use '../core/var' as *;
 
 .stock {
@@ -8,7 +8,13 @@
   font-size: 14px;
   color: $color-text-soft;
 
-  &__dot {
+  &::before {
+    content: '';
     @include dot(7px, $color-ok);
+    animation: blink var(--blink-duration, 3.2s) linear infinite;
+  }
+
+  &--still::before {
+    animation: none;
   }
 }
